@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIMTEK BOSKIN SMP TP 2026/2027</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f3ff',
+                            100: '#e0e7ff',
+                            500: '#4338ca',
+                            600: '#3730a3',
+                            700: '#312e81',
+                            900: '#1e1b4b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 antialiased h-screen flex overflow-hidden">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="sidebar" class="w-72 bg-indigo-950 text-white flex flex-col transition-all duration-300 z-30 shrink-0">
+        <!-- Sidebar Header -->
+        <div class="p-5 border-b border-indigo-900/50 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-amber-400 rounded-xl flex items-center justify-center text-indigo-950 font-bold text-xl shadow-md">
+                    <i class="fa-solid fa-school-flag"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-base tracking-wide leading-tight text-white">BOSKIN SMP</h1>
+                    <p class="text-[11px] text-amber-300 font-medium">Bimtek TP 2026/2027</p>
+                </div>
+            </div>
+            <button onclick="toggleSidebar()" class="md:hidden text-indigo-300 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Navigation Menu -->
+        <nav class="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto custom-scrollbar">
+            <!-- Menu 0: Beranda -->
+            <button onclick="switchTab('beranda')" id="nav-beranda" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-xs transition duration-200 bg-indigo-800/80 text-white shadow-sm">
+                <i class="fa-solid fa-house w-5 text-center text-amber-300 text-sm"></i>
+                <span class="font-semibold">Beranda</span>
+            </button>
+
+            <!-- Menu 1: Orbit -->
+            <button onclick="switchTab('orbit')" id="nav-orbit" class="nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-xs transition duration-200 text-indigo-200 hover:bg-indigo-900/60 hover:text-white">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-globe w-5 text-center text-sky-400 text-sm"></i>
+                    <span>Orbit</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-indigo-400"></i>
+            </button>
+
+            <!-- Menu 2: Microsite -->
+            <button onclick="switchTab('microsite')" id="nav-microsite" class="nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-xs transition duration-200 text-indigo-200 hover:bg-indigo-900/60 hover:text-white">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-laptop-code w-5 text-center text-emerald-400 text-sm"></i>
+                    <span>Microsite</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-indigo-400"></i>
+            </button>
+
+            <!-- Menu 3: WhatsApp -->
+            <button onclick="switchTab('broadcast')" id="nav-broadcast" class="nav-item w-full flex items-center justify-between px-4 py-3 rounded-xl font-medium text-xs transition duration-200 text-indigo-200 hover:bg-indigo-900/60 hover:text-white">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-brands fa-whatsapp w-5 text-center text-emerald-400 text-sm"></i>
+                    <span>WhatsApp</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-indigo-400"></i>
+            </button>
+
+            <!-- Menu 4: Form Pendataan -->
+            <button onclick="switchTab('form')" id="nav-form" class="nav-item w-full flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-xs transition duration-200 text-indigo-200 hover:bg-indigo-900/60 hover:text-white">
+                <i class="fa-solid fa-clipboard-list w-5 text-center text-purple-400 text-sm"></i>
+                <span>Form Pendataan</span>
+            </button>
+        </nav>
+
+        <!-- Sidebar Footer Status -->
+        <div class="p-4 border-t border-indigo-900/50 bg-indigo-950/80">
+            <div class="bg-indigo-900/50 p-3 rounded-xl border border-indigo-800/60 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div id="statusDot" class="w-2.5 h-2.5 bg-amber-400 rounded-full animate-pulse"></div>
+                    <span id="statusText" class="text-[11px] font-medium text-indigo-200">Database Sheets</span>
+                </div>
+                <button onclick="openConfigModal()" class="text-[10px] text-amber-300 hover:underline">API</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        
+        <!-- Top Application Bar -->
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center gap-4 shadow-sm">
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleSidebar()" class="md:hidden text-slate-600 hover:text-slate-900">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+                <div>
+                    <h1 id="pageTitle" class="text-xl font-bold text-slate-800">Beranda Utama</h1>
+                    <p id="pageSubtitle" class="text-xs text-slate-500">Portal Resmi Bimbingan Teknis BOS Kinerja SMP TP 2026/2027</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="openConfigModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center space-x-2 transition shadow-sm">
+                    <i class="fa-solid fa-gear text-indigo-600"></i>
+                    <span>Pengaturan API</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Body -->
+        <main class="flex-1 overflow-y-auto custom-scrollbar p-6">
+
+            <!-- TAB 0: BERANDA -->
+            <section id="tab-beranda-content" class="tab-content space-y-6">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-950 text-white p-6 md:p-8 rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="relative z-10 max-w-3xl">
+                        <span class="px-3 py-1 bg-amber-400/20 text-amber-300 text-xs font-semibold rounded-full border border-amber-400/30 uppercase tracking-wide">Selamat Datang</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-3 leading-tight">Selamat Datang di Portal BIMTEK BOSKIN SMP TP 2026/2027</h2>
+                        <p class="text-xs md:text-sm text-indigo-100 mt-2 leading-relaxed">
+                            Pusat informasi, sistem pendataan online, serta integrasi layanan bantuan teknis pengelolaan Dana BOS Kinerja untuk SMP Negeri dan Swasta di Kabupaten Cilacap.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <button onclick="switchTab('form')" class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span>Isi Form Pendataan</span>
+                            </button>
+                            <button onclick="switchTab('microsite')" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center space-x-2">
+                                <i class="fa-solid fa-folder-open"></i>
+                                <span>Akses Microsite Dokumen</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="absolute right-0 bottom-0 opacity-10 translate-x-10 translate-y-10 pointer-events-none">
+                        <i class="fa-solid fa-graduation-cap text-[240px] text-white"></i>
+                    </div>
+                </div>
+
+                <!-- Navigation Quick Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div onclick="switchTab('orbit')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-sky-300 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-globe text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center justify-between">
+                            <span>Tautan Orbit</span>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-sky-600"></i>
+                        </h4>
+                        <p class="text-xs text-slate-500">Akses dashboard analisis & sistem monitoring BOSKIN.</p>
+                    </div>
+
+                    <div onclick="switchTab('microsite')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-300 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-laptop-code text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center justify-between">
+                            <span>Tautan Microsite</span>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-emerald-600"></i>
+                        </h4>
+                        <p class="text-xs text-slate-500">Unduh Juknis, materi Bimtek, dan template RKAS.</p>
+                    </div>
+
+                    <div onclick="switchTab('broadcast')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-300 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-4 group-hover:scale-110 transition">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center justify-between">
+                            <span>Tautan WhatsApp</span>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-emerald-600"></i>
+                        </h4>
+                        <p class="text-xs text-slate-500">Pusat pesan pengumuman & grup koordinasi WA.</p>
+                    </div>
+
+                    <div onclick="switchTab('form')" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-purple-300 transition cursor-pointer group">
+                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-clipboard-list text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center justify-between">
+                            <span>Form Pendataan</span>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-purple-600"></i>
+                        </h4>
+                        <p class="text-xs text-slate-500">Form pengisian data peserta & sekolah terintegrasi.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 1: ORBIT (Tautan) -->
+            <section id="tab-orbit-content" class="tab-content hidden space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600">
+                            <i class="fa-solid fa-globe text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Tautan Dashboard Orbit</h3>
+                            <p class="text-xs text-slate-500">Portal Link dan Dashboard Monitoring Bimtek BOS Kinerja TP 2026/2027</p>
+                        </div>
+                    </div>
+
+                    <div class="max-w-md bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-sky-400 transition">
+                        <div class="w-12 h-12 bg-sky-500 text-white rounded-xl flex items-center justify-center mb-4 shadow-md">
+                            <i class="fa-solid fa-chart-line text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base mb-1">Dashboard ORBIT BPPMP</h4>
+                        <p class="text-xs text-slate-500 mb-6 leading-relaxed">Silakan tekan tombol di bawah ini untuk membuka tautan</p>
+                        <a href="https://pmp.bbpmpjateng.id/login" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl shadow-md transition space-x-2">
+                            <span>Buka Tautan</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: MICROSITE (Tautan) -->
+            <section id="tab-microsite-content" class="tab-content hidden space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
+                            <i class="fa-solid fa-laptop-code text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Tautan Microsite & File Drive Materi</h3>
+                            <p class="text-xs text-slate-500">Pusat unduhan berkas Juknis, materi tayang, serta format laporan.</p>
+                        </div>
+                    </div>
+
+                    <div class="max-w-md bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 transition">
+                        <div class="w-12 h-12 bg-emerald-500 text-white rounded-xl flex items-center justify-center mb-4 shadow-md">
+                            <i class="fa-solid fa-folder-open text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base mb-1">Folder Google Drive Juknis BOSKIN</h4>
+                        <p class="text-xs text-slate-500 mb-6 leading-relaxed">Silakan tekan tombol di bawah ini untuk membuka tautan</p>
+                        <a href="https://s.id/boskin-smp-cilacap-2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow-md transition space-x-2">
+                            <span>Buka Tautan</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: WHATSAPP (Tautan) -->
+            <section id="tab-broadcast-content" class="tab-content hidden space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Pusat WhatsApp & Komunikasi</h3>
+                            <p class="text-xs text-slate-500">Layanan informasi terpadu dan saluran koordinasi peserta Bimtek BOSKIN.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 transition">
+                            <div class="w-12 h-12 bg-emerald-500 text-white rounded-xl flex items-center justify-center mb-4 shadow-md">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-base mb-1">Grup WhatsApp Bimtek</h4>
+                            <p class="text-xs text-slate-500 mb-6 leading-relaxed">Grup diskusi dan koordinasi langsung antar peserta Bimtek BOSKIN SMP Kabupaten Cilacap</p>
+                            <a href="https://chat.whatsapp.com/H12e5T0QZUo5fJ8hMJ7zbF" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow-md transition space-x-2">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>Gabung Grup WA</span>
+                            </a>
+                        </div>
+
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:border-rose-400 transition">
+                            <div class="w-12 h-12 bg-rose-500 text-white rounded-xl flex items-center justify-center mb-4 shadow-md">
+                                <i class="fa-solid fa-paper-plane text-xl"></i>
+                            </div>
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-bold text-slate-800 text-base">Kirim Siaran WA Direct</h4>
+                                <span class="px-2 py-0.5 bg-rose-100 text-rose-700 text-[10px] font-bold rounded-md uppercase">Akses Terbatas</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-6 leading-relaxed">Fitur siaran langsung pengumuman Bimtek (Khusus Panitia / Admin).</p>
+                            <button onclick="checkAdminBroadcastAuth()" class="inline-flex items-center justify-center w-full px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-xl shadow-md transition space-x-2">
+                                <i class="fa-solid fa-lock text-xs"></i>
+                                <span>Buka Portal Siaran</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: FORM PENDATAAN -->
+            <section id="tab-form-content" class="tab-content hidden space-y-6">
+                <!-- Data Entry Form -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600">
+                                <i class="fa-solid fa-clipboard-list text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-base">Form Input Data Peserta Bimtek</h3>
+                                <p class="text-xs text-slate-500">Isi data secara benar. Nama wajib HURUF KAPITAL (kecuali gelar).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="pendataanForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Dropdown Sekolah -->
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Sekolah / Satuan Pendidikan *</label>
+                                <select id="inputSekolah" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition">
+                                    <option value="">-- Pilih Sekolah --</option>
+                                    <option value="SMP NEGERI 1 CILACAP">SMP NEGERI 1 CILACAP</option>
+                                    <option value="SMP NEGERI 1 KAWUNGANTEN">SMP NEGERI 1 KAWUNGANTEN</option>
+                                    <option value="SMP NEGERI 1 NUSAWUNGU">SMP NEGERI 1 NUSAWUNGU</option>
+                                    <option value="SMP NEGERI 1 SATU ATAP KAMPUNG LAUT">SMP NEGERI 1 SATU ATAP KAMPUNG LAUT</option>
+                                    <option value="SMP NEGERI 2 CILACAP">SMP NEGERI 2 CILACAP</option>
+                                    <option value="SMP NEGERI 2 MAJENANG">SMP NEGERI 2 MAJENANG</option>
+                                    <option value="SMP NEGERI 2 MAOS">SMP NEGERI 2 MAOS</option>
+                                    <option value="SMP NEGERI 2 SIDAREJA">SMP NEGERI 2 SIDAREJA</option>
+                                    <option value="SMP NEGERI 3 CILACAP">SMP NEGERI 3 CILACAP</option>
+                                    <option value="SMP NEGERI 3 GANDRUNGMANGU">SMP NEGERI 3 GANDRUNGMANGU</option>
+                                    <option value="SMP NEGERI 4 CILACAP">SMP NEGERI 4 CILACAP</option>
+                                    <option value="SMP NEGERI 4 SATU ATAP KARANGPUCUNG">SMP NEGERI 4 SATU ATAP KARANGPUCUNG</option>
+                                    <option value="SMP NEGERI 5 CILACAP">SMP NEGERI 5 CILACAP</option>
+                                    <option value="SMP NEGERI 9 CILACAP">SMP NEGERI 9 CILACAP</option>
+                                    <option value="SMP PGRI 3 Caruy">SMP PGRI 3 Caruy</option>
+                                    <option value="SMP ANAK SOLEH WANAREJA">SMP ANAK SOLEH WANAREJA</option>
+                                    <option value="SMP ISLAM AL MUJAHIDIN">SMP ISLAM AL MUJAHIDIN</option>
+                                    <option value="SMP IT INSAN MULIA MAOS">SMP IT INSAN MULIA MAOS</option>
+                                    <option value="SMP MARIA IMMACULATA CILACAP">SMP MARIA IMMACULATA CILACAP</option>
+                                    <option value="SMP MUHAMMADIYAH 2 CILACAP">SMP MUHAMMADIYAH 2 CILACAP</option>
+                                </select>
+                            </div>
+
+                            <!-- Nama Lengkap dengan Validasi Kapital -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap (Huruf KAPITAL) *</label>
+                                <input type="text" id="inputNama" required placeholder="Contoh: BUBUN SETIAWAN, S.Pd., M.Pd." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition">
+                                <p class="text-[10px] text-slate-400 mt-1">Gunakan huruf besar untuk nama, gelar boleh huruf kecil.</p>
+                            </div>
+
+                            <!-- Dropdown Jabatan -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Jabatan *</label>
+                                <select id="inputJabatan" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition">
+                                    <option value="">-- Pilih Jabatan --</option>
+                                    <option value="Kepala Sekolah">Kepala Sekolah</option>
+                                    <option value="Guru">Guru</option>
+                                </select>
+                            </div>
+
+                            <!-- NIP / NIAT Opsional -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">NIP / NIAT (bagi yang memiliki)</label>
+                                <input type="text" id="inputNip" placeholder="Masukkan 18 Digit NIP / Nomor NIAT" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition">
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Email Aktif *</label>
+                                <input type="email" id="inputEmail" required placeholder="contoh@sekolah.sch.id" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition">
+                            </div>
+
+                            <!-- No HP / WhatsApp -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">No. HP / WhatsApp *</label>
+                                <input type="tel" id="inputNoHp" required placeholder="Contoh: 081234567890" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition">
+                            </div>
+                        </div>
+
+                        <!-- Feedback Message -->
+                        <div id="formAlert" class="hidden p-3 rounded-xl text-xs font-medium"></div>
+
+                        <!-- Submit Buttons -->
+                        <div class="flex justify-end space-x-3 pt-4">
+                            <button type="button" onclick="resetForm()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs rounded-xl transition">
+                                Reset
+                            </button>
+                            <button type="submit" id="btnSubmitForm" class="px-5 py-2.5 bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Simpan Data Peserta</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Table Preview Data Peserta -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Riwayat Data Peserta Terdaftar</h3>
+                            <p class="text-xs text-slate-500">Daftar sekolah dan peserta yang telah berhasil diinput.</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="text" id="searchTable" onkeyup="filterTable()" placeholder="Cari sekolah / nama..." class="px-3 py-1.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <button onclick="exportToCSV()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl shadow-sm transition flex items-center space-x-1.5">
+                                <i class="fa-solid fa-file-excel"></i>
+                                <span>Export CSV</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-slate-200">
+                        <table class="w-full text-left border-collapse" id="pesertaTable">
+                            <thead>
+                                <tr class="bg-indigo-950 text-white text-[11px] uppercase tracking-wider">
+                                    <th class="py-3 px-4 font-bold">No</th>
+                                    <th class="py-3 px-4 font-bold">Sekolah / Satuan Pendidikan</th>
+                                    <th class="py-3 px-4 font-bold">Nama Lengkap & Jabatan</th>
+                                    <th class="py-3 px-4 font-bold">NIP / NIAT</th>
+                                    <th class="py-3 px-4 font-bold text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pesertaTableBody" class="divide-y divide-slate-200 text-xs text-slate-700">
+                                <!-- Data rows inserted dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- API CONFIG MODAL -->
+    <div id="configModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+            <div class="bg-indigo-950 p-4 text-white flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-database text-amber-400"></i>
+                    <span>Pengaturan Google Sheets API</span>
+                </h3>
+                <button onclick="closeConfigModal()" class="text-indigo-300 hover:text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-5 space-y-4">
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Masukkan Web App URL dari Google Apps Script untuk menghubungkan form pendataan secara otomatis ke Google Spreadsheet Anda.
+                </p>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Google Apps Script Web App URL</label>
+                    <input type="url" id="apiUrlInput" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-800 leading-relaxed">
+                    <i class="fa-solid fa-circle-info mr-1 text-amber-600"></i>
+                    Pastikan skrip disetup menggunakan fungsi <code>setupTemplate</code> dan dipublikasikan dengan hak akses <strong>"Anyone" (Siapa Saja)</strong>.
+                </div>
+            </div>
+            <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-between items-center">
+                <button onclick="testApiConnection()" class="px-3.5 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold text-xs rounded-xl transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-plug"></i>
+                    <span>Uji Koneksi</span>
+                </button>
+                <div class="flex space-x-2">
+                    <button onclick="closeConfigModal()" class="px-4 py-2 bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl">Batal</button>
+                    <button onclick="saveApiConfig()" class="px-4 py-2 bg-indigo-900 hover:bg-indigo-800 text-white font-semibold text-xs rounded-xl shadow-md">Simpan URL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PIN MODAL -->
+    <div id="adminPinModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white w-full max-w-sm rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+            <div class="bg-rose-950 p-4 text-white flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-shield-halved text-rose-400"></i>
+                    <span>Otorisasi Akses Admin</span>
+                </h3>
+                <button onclick="closeAdminPinModal()" class="text-rose-300 hover:text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-5 space-y-4">
+                <p class="text-xs text-slate-600">Fitur ini khusus untuk Panitia / Admin. Masukkan PIN otorisasi untuk melanjutkan.</p>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">PIN Keamanan (Default: 1234)</label>
+                    <input type="password" id="inputAdminPin" maxlength="6" placeholder="Masukkan PIN" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-center font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-rose-500">
+                </div>
+                <div id="pinAlert" class="hidden p-2 rounded-lg text-xs text-center font-semibold bg-rose-100 text-rose-700"></div>
+            </div>
+            <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-end space-x-2">
+                <button onclick="closeAdminPinModal()" class="px-4 py-2 bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl">Batal</button>
+                <button onclick="verifyAdminPin()" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs rounded-xl shadow-md">Verifikasi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store Data Local Cache
+        let pesertaData = JSON.parse(localStorage.getItem('boskin_peserta') || '[]');
+        let apiUrl = localStorage.getItem('boskin_api_url') || '';
+
+        // Initialize on load
+        window.onload = function() {
+            renderPesertaTable();
+            checkApiStatus();
+            if (apiUrl) {
+                document.getElementById('apiUrlInput').value = apiUrl;
+            }
+        };
+
+        // Navigation Tab Switcher
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            
+            // Reset Nav Styles
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('bg-indigo-800/80', 'text-white', 'shadow-sm');
+                el.classList.add('text-indigo-200');
+            });
+
+            // Activate Target Tab & Nav Item
+            const targetTab = document.getElementById('tab-' + tabId + '-content');
+            const targetNav = document.getElementById('nav-' + tabId);
+            
+            if (targetTab) targetTab.classList.remove('hidden');
+            if (targetNav) {
+                targetNav.classList.add('bg-indigo-800/80', 'text-white', 'shadow-sm');
+                targetNav.classList.remove('text-indigo-200');
+            }
+
+            // Update Page Titles
+            const pageTitle = document.getElementById('pageTitle');
+            const pageSubtitle = document.getElementById('pageSubtitle');
+
+            const titles = {
+                'beranda': { main: 'Beranda Utama', sub: 'Portal Resmi Bimbingan Teknis BOS Kinerja SMP TP 2026/2027' },
+                'orbit': { main: 'Tautan Orbit', sub: 'Portal Link dan Dashboard Monitoring Bimtek BOS Kinerja TP 2026/2027' },
+                'microsite': { main: 'Tautan Microsite', sub: 'Pusat Akses Dokumen, Juknis, dan Template Laporan' },
+                'broadcast': { main: 'Tautan WhatsApp', sub: 'Saluran Informasi & Group WhatsApp Bimtek' },
+                'form': { main: 'Form Pendataan Peserta', sub: 'Pendataan Resmi Peserta Bimtek BOSKIN SMP Kabupaten Cilacap' }
+            };
+
+            if (titles[tabId]) {
+                pageTitle.innerText = titles[tabId].main;
+                pageSubtitle.innerText = titles[tabId].sub;
+            }
+
+            // Close mobile sidebar after navigation
+            if (window.innerWidth < 768) {
+                document.getElementById('sidebar').classList.add('-translate-x-full');
+            }
+        }
+
+        // Toggle Sidebar Mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+
+        // Capital Name Validator Function
+        function validateNamaCapital(nama) {
+            // RegEx allows capital words, and optional lowercase academic titles/degrees (S.Pd., M.Pd., Drs., etc.)
+            const words = nama.trim().split(/\s+/);
+            const degreeRegex = /^(S\.Pd|M\.Pd|S\.T|S\.E|S\.Ag|M\.M|M\.Si|Drs|Dra|H|Hj)\.?,?$/i;
+            
+            for (let word of words) {
+                if (degreeRegex.test(word)) continue;
+                // Regular words must be ALL UPPERCASE
+                const cleanWord = word.replace(/[^a-zA-Z]/g, '');
+                if (cleanWord && cleanWord !== cleanWord.toUpperCase()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Email & Phone Format Validators
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validatePhone(phone) {
+            return /^(\+62|62|0)8[1-9][0-9]{7,11}$/.test(phone.replace(/\s+/g, ''));
+        }
+
+        // Form Submit Handler
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const sekolah = document.getElementById('inputSekolah').value;
+            const nama = document.getElementById('inputNama').value.trim();
+            const jabatan = document.getElementById('inputJabatan').value;
+            const nip = document.getElementById('inputNip').value.trim() || '-';
+            const email = document.getElementById('inputEmail').value.trim();
+            const noHp = document.getElementById('inputNoHp').value.trim();
+            const alertBox = document.getElementById('formAlert');
+
+            // 1. Validasi Nama Kapital
+            if (!validateNamaCapital(nama)) {
+                showAlert('Nama harus menggunakan HURUF KAPITAL (kecuali penulisan gelar seperti S.Pd., M.Pd.)!', 'error');
+                return;
+            }
+
+            // 2. Validasi Email
+            if (!validateEmail(email)) {
+                showAlert('Format alamat email tidak valid!', 'error');
+                return;
+            }
+
+            // 3. Validasi No HP
+            if (!validatePhone(noHp)) {
+                showAlert('Format No HP/WhatsApp tidak valid! (Gunakan awalan 08xxx)', 'error');
+                return;
+            }
+
+            const newEntry = {
+                id: Date.now(),
+                timestamp: new Date().toLocaleString('id-ID'),
+                sekolah,
+                nama,
+                jabatan,
+                nip,
+                email,
+                noHp
+            };
+
+            // Lock Submit Button
+            const btnSubmit = document.getElementById('btnSubmitForm');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> <span>Menyimpan...</span>';
+
+            // Save locally
+            pesertaData.unshift(newEntry);
+            localStorage.setItem('boskin_peserta', JSON.stringify(pesertaData));
+            renderPesertaTable();
+
+            // Push to Google Sheets API if configured
+            if (apiUrl) {
+                try {
+                    await fetch(apiUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newEntry)
+                    });
+                    showAlert('Data berhasil disimpan secara lokal dan terkirim ke Google Sheets!', 'success');
+                } catch (err) {
+                    showAlert('Data tersimpan secara lokal, namun gagal terhubung ke Google Sheets API.', 'warning');
+                }
+            } else {
+                showAlert('Data berhasil disimpan secara lokal ke browser!', 'success');
+            }
+
+            resetForm();
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span>Simpan Data Peserta</span>';
+        }
+
+        function showAlert(msg, type) {
+            const alertBox = document.getElementById('formAlert');
+            alertBox.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+            
+            if (type === 'success') alertBox.classList.add('bg-emerald-100', 'text-emerald-800');
+            else if (type === 'error') alertBox.classList.add('bg-rose-100', 'text-rose-800');
+            else alertBox.classList.add('bg-amber-100', 'text-amber-800');
+
+            alertBox.innerText = msg;
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function resetForm() {
+            document.getElementById('pendataanForm').reset();
+            document.getElementById('formAlert').classList.add('hidden');
+        }
+
+        // Render Table Data (Only Sekolah, Nama & Jabatan, NIP/NIAT)
+        function renderPesertaTable() {
+            const tbody = document.getElementById('pesertaTableBody');
+            tbody.innerHTML = '';
+
+            if (pesertaData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-slate-400 italic">Belum ada data peserta terdaftar.</td></tr>`;
+                return;
+            }
+
+            pesertaData.forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-semibold text-slate-500">${idx + 1}</td>
+                    <td class="py-3 px-4 font-bold text-slate-800">${item.sekolah}</td>
+                    <td class="py-3 px-4">
+                        <div class="font-semibold text-slate-800">${item.nama}</div>
+                        <span class="inline-block px-2 py-0.5 text-[10px] bg-indigo-50 text-indigo-700 font-bold rounded-md">${item.jabatan || '-'}</span>
+                    </td>
+                    <td class="py-3 px-4 text-slate-600 font-mono">${item.nip}</td>
+                    <td class="py-3 px-4 text-center">
+                        <button onclick="deletePeserta(${item.id})" class="text-rose-500 hover:text-rose-700 p-1.5 transition">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deletePeserta(id) {
+            pesertaData = pesertaData.filter(d => d.id !== id);
+            localStorage.setItem('boskin_peserta', JSON.stringify(pesertaData));
+            renderPesertaTable();
+        }
+
+        function filterTable() {
+            const query = document.getElementById('searchTable').value.toLowerCase();
+            const rows = document.querySelectorAll('#pesertaTableBody tr');
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+        }
+
+        function exportToCSV() {
+            if (pesertaData.length === 0) {
+                alert('Tidak ada data untuk diexport!');
+                return;
+            }
+            let csv = 'Timestamp,Sekolah,Nama Lengkap,Jabatan,NIP/NIAT,Email,No HP\n';
+            pesertaData.forEach(d => {
+                csv += `"${d.timestamp}","${d.sekolah}","${d.nama}","${d.jabatan}","'${d.nip}","${d.email}","'${d.noHp}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Data_Peserta_BOSKIN_SMP_${Date.now()}.csv`;
+            link.click();
+        }
+
+        // API Config Modal Handlers
+        function openConfigModal() {
+            document.getElementById('configModal').classList.remove('hidden');
+        }
+        function closeConfigModal() {
+            document.getElementById('configModal').classList.add('hidden');
+        }
+        function saveApiConfig() {
+            const url = document.getElementById('apiUrlInput').value.trim();
+            apiUrl = url;
+            localStorage.setItem('boskin_api_url', url);
+            checkApiStatus();
+            closeConfigModal();
+        }
+
+        async function testApiConnection() {
+            const url = document.getElementById('apiUrlInput').value.trim();
+            if (!url) {
+                alert('Masukkan Web App URL terlebih dahulu!');
+                return;
+            }
+            try {
+                const res = await fetch(url + '?test=1');
+                const data = await res.json();
+                if (data.status === 'online') {
+                    alert('Koneksi Berhasil! Google Sheets API aktif.');
+                } else {
+                    alert('Respons diterima, namun format tidak sesuai.');
+                }
+            } catch(e) {
+                alert('Gagal terhubung ke API. Pastikan URL benar dan permission Web App adalah "Anyone".');
+            }
+        }
+
+        function checkApiStatus() {
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+            if (apiUrl) {
+                dot.className = 'w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse';
+                text.innerText = 'Sheets Linked';
+            } else {
+                dot.className = 'w-2.5 h-2.5 bg-amber-400 rounded-full animate-pulse';
+                text.innerText = 'Sheets Unlinked';
+            }
+        }
+
+        // Admin PIN Verification Modal Handlers
+        function checkAdminBroadcastAuth() {
+            document.getElementById('inputAdminPin').value = '';
+            document.getElementById('pinAlert').classList.add('hidden');
+            document.getElementById('adminPinModal').classList.remove('hidden');
+        }
+
+        function closeAdminPinModal() {
+            document.getElementById('adminPinModal').classList.add('hidden');
+        }
+
+        function verifyAdminPin() {
+            const pin = document.getElementById('inputAdminPin').value;
+            const alertBox = document.getElementById('pinAlert');
+            if (pin === '1234') {
+                closeAdminPinModal();
+                window.open('https://web.whatsapp.com/', '_blank');
+            } else {
+                alertBox.innerText = 'PIN Salah! Silakan coba lagi.';
+                alertBox.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
