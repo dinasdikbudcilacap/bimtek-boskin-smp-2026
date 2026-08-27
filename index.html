@@ -3,202 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIMTEK BOSKIN SMP TP 2026/2027 - Kab. Cilacap</title>
-    <!-- Tailwind CSS -->
+    <title>BIMTEK BOSKIN SMP TP 2026/2027 - Kabupaten Cilacap</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f3ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#1e1b4b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f6f9;
+            background-color: #f8fafc;
         }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
+        .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
-        ::-webkit-scrollbar-thumb {
+        .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
-        }
-        .sidebar-transition {
-            transition: transform 0.3s ease-in-out;
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased bg-slate-100 flex h-screen overflow-hidden">
+<body class="text-slate-800 antialiased flex flex-col md:flex-row min-h-screen bg-slate-50">
 
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-white flex flex-col justify-between sidebar-transition -translate-x-full md:translate-x-0 md:static md:z-auto shadow-xl">
+    <aside class="w-full md:w-64 bg-slate-900 text-white flex-shrink-0 border-r border-slate-800 flex flex-col justify-between">
         <div>
-            <!-- Header App Brand -->
-            <div class="h-20 flex items-center px-6 border-b border-slate-800 bg-slate-950/40">
-                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 mr-3 shrink-0">
-                    <i class="fa-solid font-bold text-xl fa-school"></i>
-                </div>
-                <div>
-                    <h1 class="font-bold text-base tracking-wide leading-tight text-white">BOSKIN SMP</h1>
-                    <p class="text-xs text-indigo-400 font-medium">Bimtek TP 2026/2027</p>
+            <!-- Sidebar Header / Logo -->
+            <div class="p-5 flex items-center justify-between border-b border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-indigo-700 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+                        <i class="fa-solid fa-school text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-sm tracking-wide text-white leading-tight">BOSKIN SMP</h1>
+                        <p class="text-[11px] text-amber-400 font-medium">Bimtek TP 2026/2027</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Navigation Links -->
-            <nav class="p-4 space-y-1.5">
-                <button onclick="switchTab('beranda')" id="nav-beranda" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 bg-indigo-600 text-white shadow-md shadow-indigo-600/20">
-                    <i class="fa-solid fa-house w-5 text-center text-base"></i>
+            <nav class="p-4 space-y-1.5 text-sm font-medium">
+                <button onclick="switchTab('beranda')" id="nav-beranda" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">
+                    <i class="fa-solid fa-house w-5 text-center"></i>
                     <span>Beranda</span>
                 </button>
-                <button onclick="switchTab('orbit')" id="nav-orbit" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-800/80">
-                    <i class="fa-solid fa-globe w-5 text-center text-base"></i>
-                    <span>Orbit</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-auto opacity-70"></i>
+
+                <button onclick="switchTab('orbit')" id="nav-orbit" class="nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all duration-200">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-globe w-5 text-center"></i>
+                        <span>Orbit</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-50"></i>
                 </button>
-                <button onclick="switchTab('microsite')" id="nav-microsite" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-800/80">
-                    <i class="fa-solid fa-code w-5 text-center text-base"></i>
-                    <span>Microsite</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-auto opacity-70"></i>
+
+                <button onclick="switchTab('microsite')" id="nav-microsite" class="nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all duration-200">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-folder-open w-5 text-center"></i>
+                        <span>Microsite</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-50"></i>
                 </button>
-                <button onclick="switchTab('whatsapp')" id="nav-whatsapp" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-800/80">
-                    <i class="fa-brands fa-whatsapp w-5 text-center text-base"></i>
-                    <span>WhatsApp</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-auto opacity-70"></i>
+
+                <button onclick="switchTab('whatsapp')" id="nav-whatsapp" class="nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all duration-200">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-brands fa-whatsapp w-5 text-center text-emerald-400"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-50"></i>
                 </button>
-                <button onclick="switchTab('form-pendataan')" id="nav-form-pendataan" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-800/80">
-                    <i class="fa-solid fa-clipboard-list w-5 text-center text-base"></i>
+
+                <button onclick="switchTab('form-pendataan')" id="nav-form-pendataan" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all duration-200">
+                    <i class="fa-solid fa-clipboard-list w-5 text-center"></i>
                     <span>Form Pendataan</span>
                 </button>
             </nav>
         </div>
 
-        <!-- Footer Sidebar Status Database -->
-        <div class="p-4 border-t border-slate-800 bg-slate-950/30">
-            <button onclick="openApiModal()" class="w-full flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 hover:bg-slate-800 text-xs text-slate-300 transition-all border border-slate-700/50">
-                <div class="flex items-center space-x-2">
-                    <span id="apiStatusDot" class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
-                    <span id="apiStatusText" class="font-medium">Database Sheets</span>
+        <!-- Direct Link to Google Sheets Database -->
+        <div class="p-4 border-t border-slate-800/80">
+            <a href="https://docs.google.com/spreadsheets/d/1K76yoNRa8N8PU3z_P6HRRCwgiGGR_JLXneY3ZcGEtOE/edit" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-800/70 hover:bg-slate-800 rounded-xl p-3 flex items-center justify-between text-xs transition-colors border border-slate-700/50 group">
+                <div class="flex items-center space-x-2.5">
+                    <i class="fa-solid fa-table text-emerald-400 text-sm"></i>
+                    <span class="text-slate-200 font-medium group-hover:text-emerald-300 transition-colors">Database Sheets</span>
                 </div>
-                <i class="fa-solid fa-gear text-slate-400"></i>
-            </button>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:text-white transition-colors"></i>
+            </a>
         </div>
     </aside>
 
-    <!-- Content Wrapper -->
-    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+    <!-- Main Content Container -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
         
-        <!-- Top Navbar Header (Mobile Only Toggle) -->
-        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8 shrink-0">
-            <div class="flex items-center space-x-3">
-                <button onclick="toggleSidebar()" class="md:hidden text-slate-600 hover:text-slate-900 p-2 rounded-lg hover:bg-slate-100">
-                    <i class="fa-solid fa-bars text-lg"></i>
-                </button>
-                <h2 id="currentTabTitle" class="text-lg font-bold text-slate-800">Beranda Utama</h2>
+        <!-- Header TopBar -->
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm z-10">
+            <div>
+                <h2 id="pageTitle" class="text-xl font-bold text-slate-900 tracking-tight">Beranda Utama</h2>
+                <p id="pageSubTitle" class="text-xs text-slate-500 mt-0.5">Portal Resmi Bimbingan Teknis BOS Kinerja SMP TP 2026/2027</p>
             </div>
             <div class="flex items-center space-x-3">
-                <span class="text-xs bg-indigo-50 text-indigo-700 border border-indigo-200 font-semibold px-3 py-1.5 rounded-full hidden sm:inline-block">
-                    Kabupaten Cilacap
-                </span>
-                <button onclick="openApiModal()" class="text-xs text-slate-500 hover:text-indigo-600 flex items-center space-x-1.5 bg-slate-100 hover:bg-indigo-50 px-3 py-1.5 rounded-lg transition-colors border border-slate-200">
-                    <i class="fa-solid fa-sliders"></i>
-                    <span>Pengaturan API</span>
+                <button onclick="openApiModal()" class="px-3.5 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors flex items-center space-x-2 border border-slate-200">
+                    <i class="fa-solid fa-sliders text-indigo-600"></i>
+                    <span class="hidden sm:inline">Pengaturan API</span>
                 </button>
             </div>
         </header>
 
-        <!-- Main Workspace Area -->
-        <main class="flex-1 overflow-y-auto p-4 md:p-8 bg-slate-50/50">
+        <!-- Dynamic Content Body -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar">
 
             <!-- TAB 1: BERANDA -->
-            <section id="tab-beranda" class="tab-content space-y-6">
-                <!-- Header Banner -->
-                <div class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 rounded-2xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
-                    <div class="relative z-10 max-w-2xl">
-                        <span class="bg-indigo-500/30 text-indigo-200 text-xs font-semibold px-3 py-1 rounded-full border border-indigo-400/30 tracking-wide uppercase">BIMTEK BOSKIN 2026/2027</span>
-                        <h2 class="text-2xl md:text-3xl font-bold mt-3 leading-tight">Selamat Datang di Portal Pendataan BOS Kinerja SMP</h2>
-                        <p class="mt-2 text-indigo-100 text-sm leading-relaxed">
-                            Sistem layanan terpadu pendataan, modul informasi, serta portal integrasi kegiatan Bimbingan Teknis BOS Kinerja SMP Tahun Pelajaran 2026/2027 Kabupaten Cilacap.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Fast Menu Quick Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div onclick="switchTab('orbit')" class="cursor-pointer bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <section id="tab-beranda" class="tab-content block space-y-6">
+                <!-- Quick Navigation Action Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <div onclick="switchTab('orbit')" class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all cursor-pointer group hover:border-indigo-300">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-globe"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 text-base group-hover:text-blue-600 flex items-center justify-between">
-                            Tautan Orbit
-                            <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-1">Akses portal dashboard ORBIT BPPMP Jawa Tengah.</p>
-                    </div>
-
-                    <div onclick="switchTab('microsite')" class="cursor-pointer bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-code"></i>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Tautan Orbit</h3>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:translate-x-1 transition-transform"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 text-base group-hover:text-emerald-600 flex items-center justify-between">
-                            Tautan Microsite
-                            <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-1">Akses berkas Juknis & dokumen materi tayang Bimtek.</p>
+                        <p class="text-xs text-slate-500 mt-1.5 line-clamp-2">Akses dashboard analisis & sistem monitoring BOSKIN.</p>
                     </div>
 
-                    <div onclick="switchTab('whatsapp')" class="cursor-pointer bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-green-50 text-green-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <div onclick="switchTab('microsite')" class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all cursor-pointer group hover:border-indigo-300">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Tautan Microsite</h3>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1.5 line-clamp-2">Unduh Juknis, materi Bimtek, dan template RKAS.</p>
+                    </div>
+
+                    <div onclick="switchTab('whatsapp')" class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all cursor-pointer group hover:border-indigo-300">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 text-base group-hover:text-green-600 flex items-center justify-between">
-                            WhatsApp
-                            <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-1">Grup WhatsApp Bimtek peserta & pengumuman siaran.</p>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Tautan WhatsApp</h3>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1.5 line-clamp-2">Pusat pesan pengumuman & grup koordinasi WhatsApp.</p>
                     </div>
 
-                    <div onclick="switchTab('form-pendataan')" class="cursor-pointer bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <div onclick="switchTab('form-pendataan')" class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all cursor-pointer group hover:border-indigo-300">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-clipboard-list"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 text-base group-hover:text-purple-600 flex items-center justify-between">
-                            Form Pendataan
-                            <i class="fa-solid fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-1">Pengisian data peserta sekolah terintegrasi Google Sheets.</p>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Form Pendataan</h3>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1.5 line-clamp-2">Form pengisian data peserta & sekolah terintegrasi.</p>
                     </div>
+
                 </div>
             </section>
 
             <!-- TAB 2: ORBIT -->
             <section id="tab-orbit" class="tab-content hidden space-y-6">
-                <div class="bg-white p-6 md:p-8 rounded-2xl border border-slate-200/80 shadow-sm">
-                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-globe"></i>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-chart-pie"></i>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-slate-800">Tautan Dashboard Orbit</h3>
-                            <p class="text-xs text-slate-500">Portal Link dan Dashboard Monitoring Bimtek BOS Kinerja TP 2026/2027</p>
+                            <h3 class="text-lg font-bold text-slate-900">Dashboard ORBIT BPPMP Jawa Tengah</h3>
+                            <p class="text-xs text-slate-500 mt-1">Layanan sistem informasi monitoring dan penjaminan mutu pendidikan BOS Kinerja.</p>
                         </div>
                     </div>
-
-                    <div class="max-w-md bg-slate-50 rounded-xl p-6 border border-slate-200 text-center hover:border-blue-300 transition-all">
-                        <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-lg shadow-blue-500/30">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-base">Dashboard ORBIT BPPMP</h4>
-                        <p class="text-xs text-slate-500 mt-2 mb-6 leading-relaxed">Silakan tekan tombol di bawah ini untuk membuka tautan</p>
-                        <a href="https://pmp.bbpmpjateng.id/login" target="_blank" class="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-colors shadow-md shadow-blue-600/20 space-x-2">
-                            <span>Buka Tautan</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    <div class="mt-6 pt-6 border-t border-slate-100 flex justify-end">
+                        <a href="https://pmp.bbpmpjateng.id/login" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow-md transition-all inline-flex items-center space-x-2">
+                            <span>Buka Dashboard Orbit</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
                 </div>
@@ -206,26 +221,20 @@
 
             <!-- TAB 3: MICROSITE -->
             <section id="tab-microsite" class="tab-content hidden space-y-6">
-                <div class="bg-white p-6 md:p-8 rounded-2xl border border-slate-200/80 shadow-sm">
-                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
-                        <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-slate-800">Tautan Microsite & Berkas Drive</h3>
-                            <p class="text-xs text-slate-500">Pusat unduhan berkas Juknis, materi tayang, serta dokumen pendukung Bimtek.</p>
-                        </div>
-                    </div>
-
-                    <div class="max-w-md bg-slate-50 rounded-xl p-6 border border-slate-200 text-center hover:border-emerald-300 transition-all">
-                        <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 shadow-lg shadow-emerald-500/30">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl flex-shrink-0">
                             <i class="fa-solid fa-folder-open"></i>
                         </div>
-                        <h4 class="font-bold text-slate-800 text-base">Folder Drive Juknis BOSKIN</h4>
-                        <p class="text-xs text-slate-500 mt-2 mb-6 leading-relaxed">Silakan tekan tombol di bawah ini untuk membuka tautan</p>
-                        <a href="https://s.id/boskin-smp-cilacap-2026" target="_blank" class="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition-colors shadow-md shadow-emerald-600/20 space-x-2">
-                            <span>Buka Tautan</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900">Pusat Informasi & Materi Bimtek (s.id)</h3>
+                            <p class="text-xs text-slate-500 mt-1">Unduh Juknis BOS Kinerja 2026, slide pemaparan fasilitator, serta berkas panduan teknis.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-slate-100 flex justify-end">
+                        <a href="https://s.id/boskin-smp-cilacap-2026" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl shadow-md transition-all inline-flex items-center space-x-2">
+                            <span>Buka Folder Microsite</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                     </div>
                 </div>
@@ -233,56 +242,45 @@
 
             <!-- TAB 4: WHATSAPP -->
             <section id="tab-whatsapp" class="tab-content hidden space-y-6">
-                <div class="bg-white p-6 md:p-8 rounded-2xl border border-slate-200/80 shadow-sm">
-                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
-                        <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center text-lg">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- WhatsApp Group Link -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
                         <div>
-                            <h3 class="text-lg font-bold text-slate-800">Portal WhatsApp Koordinasi</h3>
-                            <p class="text-xs text-slate-500">Akses kanal grup WhatsApp peserta Bimtek BOSKIN SMP Kabupaten Cilacap.</p>
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900">Grup WhatsApp Bimtek</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Grup diskusi dan koordinasi langsung antar peserta Bimtek BOSKIN SMP Kabupaten Cilacap.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <a href="https://chat.whatsapp.com/H12e5T0QZUo5fJ8hMJ7zbF" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>Gabung Grup WA</span>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Group Link Card -->
-                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex flex-col justify-between hover:border-green-300 transition-all">
-                            <div>
-                                <div class="w-12 h-12 bg-green-500 text-white rounded-xl flex items-center justify-center text-xl mb-4 shadow-md shadow-green-500/20">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                </div>
-                                <h4 class="font-bold text-slate-800 text-base">Grup WhatsApp Bimtek</h4>
-                                <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-                                    Grup diskusi dan koordinasi langsung antar peserta Bimtek BOSKIN SMP Kabupaten Cilacap.
-                                </p>
+                    <!-- Direct WA Broadcast Access (Protected) -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-paper-plane"></i>
                             </div>
-                            <div class="mt-6">
-                                <a href="https://chat.whatsapp.com/H12e5T0QZUo5fJ8hMJ7zbF" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium text-sm transition-colors shadow-sm space-x-2">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                    <span>Gabung Grup WA</span>
-                                </a>
+                            <div class="flex items-center space-x-2">
+                                <h3 class="text-base font-bold text-slate-900">Kirim Siaran (Khusus Panitia)</h3>
+                                <span class="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-bold">AKSES TERBATAS</span>
                             </div>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Fitur pengiriman pengumuman atau pesan broadcast resmi kepada peserta Bimtek.</p>
                         </div>
-
-                        <!-- Direct Broadcast Admin Card -->
-                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex flex-col justify-between hover:border-emerald-300 transition-all">
-                            <div>
-                                <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-xl mb-4 shadow-md shadow-emerald-600/20">
-                                    <i class="fa-solid fa-paper-plane"></i>
-                                </div>
-                                <h4 class="font-bold text-slate-800 text-base">Kirim Siaran (Direct WA)</h4>
-                                <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-                                    Kirim pesan siaran / pengumuman resmi ke WhatsApp (Akses Terbatas Admin/Panitia).
-                                </p>
-                            </div>
-                            <div class="mt-6">
-                                <button onclick="openPinModal()" class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm transition-colors shadow-sm space-x-2">
-                                    <i class="fa-solid fa-lock text-xs"></i>
-                                    <span>Buka Portal Siaran</span>
-                                </button>
-                            </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <button onclick="requestAdminAuth()" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-lock text-xs text-amber-400"></i>
+                                <span>Buka Portal Siaran</span>
+                            </button>
                         </div>
                     </div>
+
                 </div>
             </section>
 
@@ -290,48 +288,44 @@
             <section id="tab-form-pendataan" class="tab-content hidden space-y-6">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     
-                    <!-- Left Column: Form Entry -->
-                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm h-fit">
-                        <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
-                            <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg">
-                                <i class="fa-solid fa-user-plus"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-base font-bold text-slate-800">Form Pendataan Peserta</h3>
-                                <p class="text-xs text-slate-500">Lengkapi data peserta Bimtek di bawah ini</p>
-                            </div>
+                    <!-- Registration Input Form -->
+                    <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <div class="border-b border-slate-100 pb-3 flex items-center justify-between">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+                                <i class="fa-solid fa-user-plus text-indigo-600"></i>
+                                <span>Formulir Pendataan Peserta</span>
+                            </h3>
+                            <span class="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-semibold">TP 2026/2027</span>
                         </div>
 
-                        <form id="pesertaForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                            <!-- Sekolah Dropdown -->
+                        <form id="pendataanForm" onsubmit="handleFormSubmit(event)" class="space-y-3.5">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Sekolah / Satuan Pendidikan *</label>
                                 <select id="sekolah" required class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none transition-all">
-                                    <option value="" disabled selected>-- Pilih Satuan Pendidikan --</option>
-                                    <option value="SMP NEGERI 1 CILACAP">SMP NEGERI 1 CILACAP</option>
-                                    <option value="SMP NEGERI 1 KAWUNGANTEN">SMP NEGERI 1 KAWUNGANTEN</option>
-                                    <option value="SMP NEGERI 1 NUSAWUNGU">SMP NEGERI 1 NUSAWUNGU</option>
-                                    <option value="SMP NEGERI 1 SATU ATAP KAMPUNG LAUT">SMP NEGERI 1 SATU ATAP KAMPUNG LAUT</option>
-                                    <option value="SMP NEGERI 2 CILACAP">SMP NEGERI 2 CILACAP</option>
-                                    <option value="SMP NEGERI 2 MAJENANG">SMP NEGERI 2 MAJENANG</option>
-                                    <option value="SMP NEGERI 2 MAOS">SMP NEGERI 2 MAOS</option>
-                                    <option value="SMP NEGERI 2 SIDAREJA">SMP NEGERI 2 SIDAREJA</option>
-                                    <option value="SMP NEGERI 3 CILACAP">SMP NEGERI 3 CILACAP</option>
-                                    <option value="SMP NEGERI 3 GANDRUNGMANGU">SMP NEGERI 3 GANDRUNGMANGU</option>
-                                    <option value="SMP NEGERI 4 CILACAP">SMP NEGERI 4 CILACAP</option>
-                                    <option value="SMP NEGERI 4 SATU ATAP KARANGPUCUNG">SMP NEGERI 4 SATU ATAP KARANGPUCUNG</option>
-                                    <option value="SMP NEGERI 5 CILACAP">SMP NEGERI 5 CILACAP</option>
-                                    <option value="SMP NEGERI 9 CILACAP">SMP NEGERI 9 CILACAP</option>
-                                    <option value="SMP PGRI 3 Caruy">SMP PGRI 3 Caruy</option>
-                                    <option value="SMP ANAK SOLEH WANAREJA">SMP ANAK SOLEH WANAREJA</option>
-                                    <option value="SMP ISLAM AL MUJAHIDIN">SMP ISLAM AL MUJAHIDIN</option>
-                                    <option value="SMP IT INSAN MULIA MAOS">SMP IT INSAN MULIA MAOS</option>
-                                    <option value="SMP MARIA IMMACULATA CILACAP">SMP MARIA IMMACULATA CILACAP</option>
-                                    <option value="SMP MUHAMMADIYAH 2 CILACAP">SMP MUHAMMADIYAH 2 CILACAP</option>
+                                    <option value="" disabled selected>-- Pilih Sekolah SMP --</option>
+                                    <option value="SMP Negeri 1 Cilacap">SMP Negeri 1 Cilacap</option>
+                                    <option value="SMP Negeri 2 Cilacap">SMP Negeri 2 Cilacap</option>
+                                    <option value="SMP Negeri 3 Cilacap">SMP Negeri 3 Cilacap</option>
+                                    <option value="SMP Negeri 4 Cilacap">SMP Negeri 4 Cilacap</option>
+                                    <option value="SMP Negeri 5 Cilacap">SMP Negeri 5 Cilacap</option>
+                                    <option value="SMP Negeri 6 Cilacap">SMP Negeri 6 Cilacap</option>
+                                    <option value="SMP Negeri 7 Cilacap">SMP Negeri 7 Cilacap</option>
+                                    <option value="SMP Negeri 8 Cilacap">SMP Negeri 8 Cilacap</option>
+                                    <option value="SMP Negeri 1 Jeruklegi">SMP Negeri 1 Jeruklegi</option>
+                                    <option value="SMP Negeri 2 Jeruklegi">SMP Negeri 2 Jeruklegi</option>
+                                    <option value="SMP Negeri 1 Kesugihan">SMP Negeri 1 Kesugihan</option>
+                                    <option value="SMP Negeri 2 Kesugihan">SMP Negeri 2 Kesugihan</option>
+                                    <option value="SMP Negeri 1 Kroya">SMP Negeri 1 Kroya</option>
+                                    <option value="SMP Negeri 2 Kroya">SMP Negeri 2 Kroya</option>
+                                    <option value="SMP Negeri 1 Majenang">SMP Negeri 1 Majenang</option>
+                                    <option value="SMP Negeri 2 Majenang">SMP Negeri 2 Majenang</option>
+                                    <option value="SMP Negeri 1 Sidareja">SMP Negeri 1 Sidareja</option>
+                                    <option value="SMP Negeri 2 Sidareja">SMP Negeri 2 Sidareja</option>
+                                    <option value="SMP Swasta Al-Irsyad Cilacap">SMP Swasta Al-Irsyad Cilacap</option>
+                                    <option value="SMP Swasta Muhammadiyah Cilacap">SMP Swasta Muhammadiyah Cilacap</option>
                                 </select>
                             </div>
 
-                            <!-- Nama Lengkap & Jabatan Grid -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Nama Lengkap *</label>
@@ -348,273 +342,289 @@
                                 </div>
                             </div>
 
-                            <!-- NIP / NIAT -->
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">NIP / NIAT (bagi yang memiliki)</label>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">NIP (bagi yang memiliki)</label>
                                 <input type="text" id="nip" placeholder="19800101 200501 1 001" class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none transition-all">
                             </div>
 
-                            <!-- Email & No HP Grid -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
                                     <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Email Aktif *</label>
-                                    <input type="email" id="email" placeholder="nama@email.com" required class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none transition-all">
+                                    <input type="email" id="email" placeholder="nama@sekolah.sch.id" required class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none transition-all">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">No. HP / WA *</label>
+                                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">No. HP / WhatsApp *</label>
                                     <input type="tel" id="noHp" placeholder="081234567890" required class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:outline-none transition-all">
                                 </div>
                             </div>
 
-                            <!-- Submit Button -->
-                            <button type="submit" id="submitBtn" class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center space-x-2 mt-2">
+                            <button type="submit" id="btnSubmitForm" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center space-x-2 mt-2">
                                 <i class="fa-solid fa-paper-plane"></i>
                                 <span>Simpan & Kirim Data</span>
                             </button>
                         </form>
                     </div>
 
-                    <!-- Right Column: Registered Participants Table -->
-                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-4 border-b border-slate-100">
+                    <!-- Data List Table -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
+                        <div class="border-b border-slate-100 pb-3 flex items-center justify-between mb-4">
                             <div>
-                                <h3 class="text-base font-bold text-slate-800">Daftar Peserta Terdaftar</h3>
-                                <p class="text-xs text-slate-500">Total: <span id="totalPesertaCount" class="font-bold text-indigo-600">0</span> Peserta</p>
+                                <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+                                    <i class="fa-solid fa-users text-indigo-600"></i>
+                                    <span>Peserta Terdaftar</span>
+                                </h3>
+                                <p class="text-[11px] text-slate-400">Total: <span id="totalPesertaBadge" class="font-bold text-indigo-600">0</span> Peserta</p>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <input type="text" id="searchInput" onkeyup="filterPesertaTable()" placeholder="Cari nama/sekolah..." class="px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-36 sm:w-44">
-                                <button onclick="exportToCSV()" class="px-3 py-1.5 text-xs bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors flex items-center space-x-1">
+                                <button onclick="exportToCSV()" class="px-3 py-1.5 text-[11px] font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 rounded-lg border border-emerald-200 transition-colors flex items-center space-x-1">
                                     <i class="fa-solid fa-file-excel"></i>
                                     <span>Export CSV</span>
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Data Table -->
+                        <!-- Table Scroll Container -->
                         <div class="flex-1 overflow-x-auto">
                             <table class="w-full text-left border-collapse">
                                 <thead>
                                     <tr class="bg-slate-50 text-slate-500 text-[11px] font-semibold uppercase tracking-wider border-b border-slate-200">
                                         <th class="py-3 px-3">Sekolah</th>
                                         <th class="py-3 px-3">Nama Lengkap</th>
-                                        <th class="py-3 px-3">NIP / NIAT</th>
+                                        <th class="py-3 px-3">NIP</th>
                                         <th class="py-3 px-3 text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody id="pesertaTableBody" class="divide-y divide-slate-100 text-xs">
-                                    <!-- Table rows inserted dynamically -->
+                                    <!-- Dynamic rows loaded via JS -->
                                 </tbody>
                             </table>
+                            
+                            <div id="emptyTableState" class="py-12 text-center">
+                                <i class="fa-solid fa-folder-open text-3xl text-slate-300 mb-2 block"></i>
+                                <p class="text-xs text-slate-400">Belum ada data peserta terdaftar.</p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </section>
 
-        </main>
+        </div>
+    </main>
+
+    <!-- MODAL: PIN ADMIN AUTH -->
+    <div id="adminPinModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+            <div class="text-center">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h4 class="font-bold text-slate-900 text-base">Otorisasi Akses Admin</h4>
+                <p class="text-xs text-slate-500 mt-1">Masukkan PIN untuk membuka Portal Siaran WhatsApp.</p>
+            </div>
+            <div>
+                <input type="password" id="adminPinInput" placeholder="Masukkan PIN Akses" maxlength="20" class="w-full px-4 py-3 text-center text-lg font-bold tracking-widest bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div class="flex space-x-2">
+                <button onclick="closeAdminModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors">Batal</button>
+                <button onclick="verifyAdminPin()" class="w-1/2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">Verifikasi</button>
+            </div>
+        </div>
     </div>
 
-    <!-- MODAL 1: PENGATURAN API GOOGLE APPS SCRIPT -->
-    <div id="apiModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                <h3 class="font-bold text-slate-800 text-base flex items-center space-x-2">
-                    <i class="fa-solid fa-sliders text-indigo-600"></i>
-                    <span>Pengaturan API Google Sheets</span>
-                </h3>
+    <!-- MODAL: API CONFIG -->
+    <div id="apiModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h4 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-plug text-indigo-600"></i>
+                    <span>Pengaturan Google Apps Script Web App URL</span>
+                </h4>
                 <button onclick="closeApiModal()" class="text-slate-400 hover:text-slate-600">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
-            
-            <p class="text-xs text-slate-600 leading-relaxed">
-                URL Google Apps Script Web App telah ditanamkan langsung. Anda dapat mengujinya di bawah ini:
+            <p class="text-xs text-slate-500 leading-relaxed">
+                Tautkan Web App URL dari Google Apps Script (`Code.gs`) untuk menyinkronkan data form ke Google Sheets.
             </p>
-
             <div>
-                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Web App URL</label>
-                <input type="text" id="apiUrlInput" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1 text-[10px]">Google Apps Script Web App URL</label>
+                <input type="url" id="webAppUrlInput" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
             </div>
-
-            <div id="apiTestResult" class="hidden p-3 rounded-lg text-xs"></div>
-
-            <div class="flex items-center justify-end space-x-2 pt-2">
-                <button onclick="testApiConnection()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors">
-                    Tes Koneksi
-                </button>
-                <button onclick="saveApiUrl()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-colors">
-                    Simpan URL
-                </button>
+            <div class="flex justify-end space-x-2 pt-2">
+                <button onclick="closeApiModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors">Batal</button>
+                <button onclick="saveApiUrl()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">Simpan URL</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 2: PIN OTORISASI WHATSAPP BROADCAST -->
-    <div id="pinModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden p-4">
-        <div class="bg-white rounded-2xl max-w-xs w-full p-6 shadow-2xl text-center space-y-4">
-            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto text-xl">
-                <i class="fa-solid fa-lock"></i>
-            </div>
-            <div>
-                <h3 class="font-bold text-slate-800 text-base">Otorisasi Admin</h3>
-                <p class="text-xs text-slate-500 mt-1">Masukkan PIN untuk membuka portal siaran</p>
-            </div>
-            <input type="password" id="pinInput" placeholder="Masukkan PIN" maxlength="20" class="w-full text-center px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none tracking-widest">
-            <div class="flex space-x-2">
-                <button onclick="closePinModal()" class="w-1/2 py-2.5 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors">Batal</button>
-                <button onclick="verifyPin()" class="w-1/2 py-2.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-colors">Masuk</button>
-            </div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div id="toastContent" class="px-4 py-3 rounded-xl shadow-xl text-xs font-medium text-white flex items-center space-x-2.5 bg-slate-900">
+            <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+            <span id="toastMessage">Pesan Notifikasi</span>
         </div>
     </div>
 
     <script>
-        // WEB APP URL GOOGLE APPS SCRIPT (DITANAM LANGSUNG)
-        const DEFAULT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxV-l9zTUKI6A2OdEHWfMrLkC7nBgw91ZIIYQ_5iDyw8HQBNOrIXfAtftIw6Q3uo8r54Q/exec';
+        // HARDCODED WEB APP URL & PIN ADMIN
+        const DEFAULT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzBEYaoO-hkafKtOok41qK7dpoFA97A2JBSLx-xi-hTzxVkh0XolkIRHelxwYdDVbBEmQ/exec";
+        const ADMIN_PIN = "bimtek26";
+        
+        let pesertaData = [];
 
-        // Local Cache & API Setup
-        let pesertaData = JSON.parse(localStorage.getItem('boskin_peserta') || '[]');
-        let apiUrl = localStorage.getItem('boskin_api_url') || DEFAULT_WEB_APP_URL;
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const stored = localStorage.getItem('boskin_peserta');
+                if (stored) {
+                    pesertaData = JSON.parse(stored);
+                }
+            } catch (e) {
+                console.error("Gagal membaca dari localStorage", e);
+                pesertaData = [];
+            }
 
-        // Initialize App
-        window.onload = function() {
+            if (!localStorage.getItem('boskin_api_url')) {
+                localStorage.setItem('boskin_api_url', DEFAULT_WEB_APP_URL);
+            }
+            
+            const apiInput = document.getElementById('webAppUrlInput');
+            if (apiInput) {
+                apiInput.value = localStorage.getItem('boskin_api_url');
+            }
+            
             renderPesertaTable();
-            checkApiStatus();
-            document.getElementById('apiUrlInput').value = apiUrl;
-        };
+        });
 
-        // Navigation Switcher
+        // Tab Navigation Switcher
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
-                btn.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/80');
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+                btn.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
             });
 
-            const targetTab = document.getElementById('tab-' + tabId);
-            const targetNav = document.getElementById('nav-' + tabId);
-            if(targetTab) targetTab.classList.remove('hidden');
-            if(targetNav) {
-                targetNav.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
-                targetNav.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/80');
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            const activeNav = document.getElementById(`nav-${tabId}`);
+
+            if (activeTab) activeTab.classList.remove('hidden');
+            if (activeNav) {
+                activeNav.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+                activeNav.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
             }
 
-            // Update Header Title
-            const titles = {
-                'beranda': 'Beranda Utama',
-                'orbit': 'Menu Orbit',
-                'microsite': 'Menu Microsite',
-                'whatsapp': 'Kanal WhatsApp',
-                'form-pendataan': 'Form Pendataan Peserta'
-            };
-            document.getElementById('currentTabTitle').innerText = titles[tabId] || 'BIMTEK BOSKIN';
+            // Update Header Titles
+            const pageTitle = document.getElementById('pageTitle');
+            const pageSubTitle = document.getElementById('pageSubTitle');
 
-            // Close Mobile Sidebar
-            const sidebar = document.getElementById('sidebar');
-            if (!sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.add('-translate-x-full');
+            switch (tabId) {
+                case 'beranda':
+                    pageTitle.textContent = 'Beranda Utama';
+                    pageSubTitle.textContent = 'Portal Resmi Bimbingan Teknis BOS Kinerja SMP TP 2026/2027';
+                    break;
+                case 'orbit':
+                    pageTitle.textContent = 'Tautan Orbit BPPMP';
+                    pageSubTitle.textContent = 'Akses Portal Monitoring & Analisis Mutu BPPMP Jateng';
+                    break;
+                case 'microsite':
+                    pageTitle.textContent = 'Microsite s.id';
+                    pageSubTitle.textContent = 'Pusat Unduhan Berkas Panduan, Juknis & Slide Pemaparan';
+                    break;
+                case 'whatsapp':
+                    pageTitle.textContent = 'WhatsApp Bimtek';
+                    pageSubTitle.textContent = 'Grup Diskusi & Akses Pengiriman Pesan Broadcast';
+                    break;
+                case 'form-pendataan':
+                    pageTitle.textContent = 'Form Pendataan Peserta';
+                    pageSubTitle.textContent = 'Pendataan Resmi Peserta Bimtek BOS Kinerja SMP TP 2026/2027';
+                    break;
             }
         }
 
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-        }
-
-        // CAPITAL NAME VALIDATION WITH DEGREE SUPPORT
+        // Validate Capital Name Format (Preserving Degrees)
         function validateNamaInput(input) {
-            let val = input.value.trim();
-            if(!val) return;
-
-            // List common degrees
-            const degrees = ['S.Pd.', 'S.Pd', 'M.Pd.', 'M.Pd', 'S.T.', 'S.T', 'M.T.', 'M.T', 'S.Ag.', 'S.Ag', 'M.Ag.', 'M.Ag', 'S.E.', 'S.E', 'M.M.', 'M.M', 'Drs.', 'Dra.', 'H.', 'Hj.', 'S.Sos.', 'M.Si.'];
-            
-            let parts = val.split(',');
-            let namePart = parts[0].toUpperCase();
-            
-            if(parts.length > 1) {
-                let degreeParts = parts.slice(1).join(',');
-                input.value = namePart + ',' + degreeParts;
-            } else {
-                input.value = namePart;
-            }
+            if (!input.value.trim()) return;
+            let parts = input.value.split(',');
+            parts[0] = parts[0].toUpperCase();
+            input.value = parts.join(',');
         }
 
-        // FORM SUBMISSION HANDLER
-        function handleFormSubmit(e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('submitBtn');
-            const originalBtnContent = submitBtn.innerHTML;
+        async function handleFormSubmit(event) {
+            event.preventDefault();
             
-            const formData = {
+            const btnSubmit = document.getElementById('btnSubmitForm');
+            const originalBtnContent = btnSubmit.innerHTML;
+
+            const newPeserta = {
                 id: Date.now(),
                 timestamp: new Date().toLocaleString('id-ID'),
                 sekolah: document.getElementById('sekolah').value,
-                nama: document.getElementById('nama').value,
+                nama: document.getElementById('nama').value.trim(),
                 jabatan: document.getElementById('jabatan').value,
-                nip: document.getElementById('nip').value || '-',
-                email: document.getElementById('email').value,
-                noHp: document.getElementById('noHp').value
+                nip: document.getElementById('nip').value.trim() || '-',
+                email: document.getElementById('email').value.trim(),
+                noHp: document.getElementById('noHp').value.trim()
             };
 
-            // Phone Validation
-            const phoneRegex = /^(08|\+628)[0-9]{8,12}$/;
-            if (!phoneRegex.test(formData.noHp.replace(/\s+/g, ''))) {
-                showToast('Nomor HP tidak valid. Gunakan awalan 08 / +62', 'error');
-                return;
-            }
+            // UI Loading state
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Menyimpan Data...</span>`;
 
-            // 1. Save locally
-            pesertaData.unshift(formData);
-            localStorage.setItem('boskin_peserta', JSON.stringify(pesertaData));
+            // Save locally first
+            pesertaData.unshift(newPeserta);
+            try {
+                localStorage.setItem('boskin_peserta', JSON.stringify(pesertaData));
+            } catch (err) {
+                console.error("Gagal menyimpan ke LocalStorage:", err);
+            }
             renderPesertaTable();
 
-            // 2. UI Loading State
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Mengirim ke Sheets...</span>`;
+            // Push to Google Sheets API using text/plain header to bypass CORS preflight blocking
+            const apiUrl = localStorage.getItem('boskin_api_url') || DEFAULT_WEB_APP_URL;
 
-            // 3. Post to Google Sheets API
-            fetch(apiUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            })
-            .then(() => {
-                showToast('Data berhasil disimpan ke local & Google Sheets!', 'success');
-                document.getElementById('pesertaForm').reset();
-            })
-            .catch(err => {
-                showToast('Data tersimpan lokal (Koneksi Sheets gagal)', 'warning');
-                document.getElementById('pesertaForm').reset();
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnContent;
-            });
+            try {
+                await fetch(apiUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(newPeserta)
+                });
+                
+                showToast('Data berhasil disimpan dan disinkronkan!', 'success');
+                document.getElementById('pendataanForm').reset();
+            } catch (err) {
+                console.error("Gagal mengirim ke Sheets API:", err);
+                showToast('Tersimpan di penyimpanan lokal!', 'info');
+                document.getElementById('pendataanForm').reset();
+            } finally {
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = originalBtnContent;
+            }
         }
 
-        // RENDER TABLE DATA
-        function renderPesertaTable(dataToRender = pesertaData) {
+        function renderPesertaTable() {
             const tbody = document.getElementById('pesertaTableBody');
-            document.getElementById('totalPesertaCount').innerText = pesertaData.length;
+            const emptyState = document.getElementById('emptyTableState');
+            const totalBadge = document.getElementById('totalPesertaBadge');
 
-            if (dataToRender.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="4" class="py-8 text-center text-slate-400 text-xs">
-                            Belum ada data peserta terdaftar.
-                        </td>
-                    </tr>
-                `;
+            if (!tbody || !emptyState || !totalBadge) return;
+
+            totalBadge.textContent = pesertaData.length;
+
+            if (pesertaData.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
                 return;
             }
 
-            tbody.innerHTML = dataToRender.map(item => `
+            emptyState.classList.add('hidden');
+            tbody.innerHTML = pesertaData.map(r => `
                 <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="py-3 px-3 font-semibold text-slate-800">${escapeHtml(item.sekolah)}</td>
-                    <td class="py-3 px-3">${escapeHtml(item.nama)} <span class="text-[10px] text-slate-400 block">${escapeHtml(item.jabatan || '')}</span></td>
-                    <td class="py-3 px-3 font-mono text-slate-600">${escapeHtml(item.nip)}</td>
+                    <td class="py-3 px-3 font-medium text-slate-800">${escapeHtml(r.sekolah)}</td>
+                    <td class="py-3 px-3 text-slate-700 font-semibold">${escapeHtml(r.nama)}</td>
+                    <td class="py-3 px-3 text-slate-500 font-mono text-[11px]">${escapeHtml(r.nip)}</td>
                     <td class="py-3 px-3 text-center">
-                        <button onclick="deletePeserta(${item.id})" class="text-rose-500 hover:text-rose-700 p-1">
+                        <button onclick="deletePeserta(${r.id})" class="text-slate-400 hover:text-red-500 transition-colors p-1" title="Hapus Data">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>
@@ -622,65 +632,64 @@
             `).join('');
         }
 
+        // Delete Entry
         function deletePeserta(id) {
             pesertaData = pesertaData.filter(item => item.id !== id);
-            localStorage.setItem('boskin_peserta', JSON.stringify(pesertaData));
+            try {
+                localStorage.setItem('boskin_peserta', JSON.stringify(pesertaData));
+            } catch(e) {}
             renderPesertaTable();
-            showToast('Data berhasil dihapus dari tampilan lokal', 'info');
+            showToast('Data peserta berhasil dihapus dari penyimpanan.', 'info');
         }
 
-        function filterPesertaTable() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = pesertaData.filter(item => 
-                item.nama.toLowerCase().includes(query) || 
-                item.sekolah.toLowerCase().includes(query) ||
-                item.nip.toLowerCase().includes(query)
-            );
-            renderPesertaTable(filtered);
-        }
-
+        // Export to CSV File
         function exportToCSV() {
             if (pesertaData.length === 0) {
                 showToast('Tidak ada data untuk diexport!', 'warning');
                 return;
             }
 
-            let csv = 'Waktu,Sekolah,Nama Lengkap,Jabatan,NIP/NIAT,Email,No HP\n';
+            let csv = 'Waktu,Sekolah,Nama Lengkap,Jabatan,NIP,Email,No HP\n';
             pesertaData.forEach(r => {
                 csv += `"${r.timestamp}","${r.sekolah}","${r.nama}","${r.jabatan}","'${r.nip}","${r.email}","'${r.noHp}"\n`;
             });
 
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement("a");
-            const url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", `Peserta_BIMTEK_BOSKIN_${Date.now()}.csv`);
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', `DATA_PESERTA_BIMTEK_BOSKIN_${new Date().toISOString().slice(0,10)}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            
+            showToast('File CSV berhasil diunduh!', 'success');
         }
 
-        // PIN AUTHORIZATION MODAL
-        function openPinModal() {
-            document.getElementById('pinInput').value = '';
-            document.getElementById('pinModal').classList.remove('hidden');
+        // Admin PIN Verification Logic
+        function requestAdminAuth() {
+            document.getElementById('adminPinInput').value = '';
+            document.getElementById('adminPinModal').classList.remove('hidden');
+            document.getElementById('adminPinInput').focus();
         }
 
-        function closePinModal() {
-            document.getElementById('pinModal').classList.add('hidden');
+        function closeAdminModal() {
+            document.getElementById('adminPinModal').classList.add('hidden');
         }
 
-        function verifyPin() {
-            const pin = document.getElementById('pinInput').value;
-            if (pin === 'bimtek26') {
-                closePinModal();
-                window.open('https://dinasdikbudcilacap.github.io/pesan-massal/', '_blank');
+        function verifyAdminPin() {
+            const pinVal = document.getElementById('adminPinInput').value.trim();
+            if (pinVal === ADMIN_PIN) {
+                closeAdminModal();
+                showToast('Akses Admin Diterima! Mengalihkan ke Portal Siaran...', 'success');
+                setTimeout(() => {
+                    window.open('https://dinasdikbudcilacap.github.io/pesan-massal/', '_blank');
+                }, 800);
             } else {
-                showToast('PIN salah! Akses ditolak.', 'error');
+                showToast('PIN Admin salah!', 'error');
             }
         }
 
-        // API MODAL & KONEKSI
+        // API Modal Settings
         function openApiModal() {
             document.getElementById('apiModal').classList.remove('hidden');
         }
@@ -690,72 +699,44 @@
         }
 
         function saveApiUrl() {
-            const url = document.getElementById('apiUrlInput').value.trim();
-            apiUrl = url || DEFAULT_WEB_APP_URL;
-            localStorage.setItem('boskin_api_url', apiUrl);
+            const urlVal = document.getElementById('webAppUrlInput').value.trim();
+            localStorage.setItem('boskin_api_url', urlVal);
             closeApiModal();
-            checkApiStatus();
-            showToast('URL Web App berhasil disimpan', 'success');
+            showToast('Pengaturan API URL berhasil disimpan!', 'success');
         }
 
-        function checkApiStatus() {
-            const dot = document.getElementById('apiStatusDot');
-            const text = document.getElementById('apiStatusText');
-            if (apiUrl && apiUrl !== '') {
-                dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
-                text.innerText = 'Sheets Linked';
-            } else {
-                dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse';
-                text.innerText = 'Sheets Unset';
-            }
-        }
-
-        function testApiConnection() {
-            const resDiv = document.getElementById('apiTestResult');
-            const inputUrl = document.getElementById('apiUrlInput').value.trim();
-
-            resDiv.className = 'p-3 rounded-lg text-xs bg-slate-100 text-slate-600 block';
-            resDiv.innerText = 'Testing connection...';
-
-            fetch(inputUrl, { method: 'GET' })
-                .then(res => res.json())
-                .then(data => {
-                    resDiv.className = 'p-3 rounded-lg text-xs bg-emerald-50 text-emerald-700 block border border-emerald-200';
-                    resDiv.innerText = 'Koneksi Sukses! Service: ' + (data.service || 'API Google Sheets Online');
-                })
-                .catch(err => {
-                    resDiv.className = 'p-3 rounded-lg text-xs bg-rose-50 text-rose-700 block border border-rose-200';
-                    resDiv.innerText = 'Koneksi Gagal / CORS blocked. Pastikan Web App Deploy = Anyone.';
-                });
-        }
-
-        // HELPER UTILITIES
-        function escapeHtml(text) {
-            return (text || '').toString()
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
+        // Toast Message Utility
         function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            const bgColors = {
-                success: 'bg-emerald-600',
-                error: 'bg-rose-600',
-                warning: 'bg-amber-500',
-                info: 'bg-slate-800'
-            };
-            toast.className = `fixed bottom-5 right-5 z-50 text-white px-4 py-3 rounded-xl shadow-xl text-xs flex items-center space-x-2 transition-all duration-300 transform translate-y-10 ${bgColors[type] || bgColors.info}`;
-            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i><span>${message}</span>`;
-            document.body.appendChild(toast);
+            const toast = document.getElementById('toast');
+            const toastContent = document.getElementById('toastContent');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
 
-            setTimeout(() => { toast.classList.remove('translate-y-10'); }, 10);
+            if (!toast || !toastContent || !toastMessage || !toastIcon) return;
+
+            toastMessage.textContent = message;
+
+            if (type === 'success') {
+                toastContent.className = 'px-4 py-3 rounded-xl shadow-xl text-xs font-medium text-white flex items-center space-x-2.5 bg-emerald-600';
+                toastIcon.className = 'fa-solid fa-circle-check text-white';
+            } else if (type === 'warning' || type === 'error') {
+                toastContent.className = 'px-4 py-3 rounded-xl shadow-xl text-xs font-medium text-white flex items-center space-x-2.5 bg-rose-600';
+                toastIcon.className = 'fa-solid fa-triangle-exclamation text-white';
+            } else {
+                toastContent.className = 'px-4 py-3 rounded-xl shadow-xl text-xs font-medium text-white flex items-center space-x-2.5 bg-slate-900';
+                toastIcon.className = 'fa-solid fa-circle-info text-indigo-400';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+
             setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-10');
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Helper Escape HTML
+        function escapeHtml(str) {
+            return String(str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
         }
     </script>
 </body>
