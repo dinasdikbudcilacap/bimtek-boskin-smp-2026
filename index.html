@@ -70,8 +70,8 @@
                         <i class="fa-solid fa-school text-lg"></i>
                     </div>
                     <div>
-                        <h1 class="font-bold text-sm tracking-wide text-white leading-tight">BIMTEK SMP</h1>
-                        <p class="text-[11px] text-amber-400 font-medium">BOSKIN TP 2026/2027</p>
+                        <h1 class="font-bold text-sm tracking-wide text-white leading-tight">BOSKIN SMP</h1>
+                        <p class="text-[11px] text-amber-400 font-medium">Bimtek TP 2026/2027</p>
                     </div>
                 </div>
             </div>
@@ -134,12 +134,6 @@
             <div>
                 <h2 id="pageTitle" class="text-xl font-bold text-slate-900 tracking-tight">Beranda Utama</h2>
                 <p id="pageSubTitle" class="text-xs text-slate-500 mt-0.5">Portal Resmi Bimbingan Teknis BOS Kinerja SMP TP 2026/2027</p>
-            </div>
-            <div class="flex items-center space-x-3">
-                <button onclick="openApiModal()" class="px-3.5 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors flex items-center space-x-2 border border-slate-200">
-                    <i class="fa-solid fa-sliders text-indigo-600"></i>
-                    <span class="hidden sm:inline">Pengaturan API</span>
-                </button>
             </div>
         </header>
 
@@ -261,21 +255,18 @@
                         </div>
                     </div>
 
-                    <!-- Direct WA Broadcast Access (Protected) -->
+                    <!-- Broadcast Broadcast Card (Khusus Panitia) -->
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl mb-4">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <h3 class="text-base font-bold text-slate-900">Kirim Siaran (Khusus Panitia)</h3>
-                                <span class="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-bold">AKSES TERBATAS</span>
-                            </div>
-                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Fitur pengiriman pengumuman atau pesan broadcast resmi kepada peserta Bimtek.</p>
+                            <h3 class="text-base font-bold text-slate-900">Kirim Siaran (Khusus Panitia)</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Akses portal pengiriman pesan siaran massal (broadcast) untuk pengumuman resmi bimtek.</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-slate-100">
-                            <button onclick="requestAdminAuth()" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-all flex items-center justify-center space-x-2">
-                                <i class="fa-solid fa-lock text-xs text-amber-400"></i>
+                            <button onclick="openAuthModal()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-all flex items-center justify-center space-x-2 shadow-md">
+                                <i class="fa-solid fa-lock text-xs"></i>
                                 <span>Buka Portal Siaran</span>
                             </button>
                         </div>
@@ -412,26 +403,6 @@
         </div>
     </main>
 
-    <!-- MODAL: PIN ADMIN AUTH -->
-    <div id="adminPinModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 space-y-4">
-            <div class="text-center">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h4 class="font-bold text-slate-900 text-base">Otorisasi Akses Admin</h4>
-                <p class="text-xs text-slate-500 mt-1">Masukkan PIN untuk membuka Portal Siaran WhatsApp.</p>
-            </div>
-            <div>
-                <input type="password" id="adminPinInput" placeholder="Masukkan PIN Akses" maxlength="20" class="w-full px-4 py-3 text-center text-lg font-bold tracking-widest bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-            </div>
-            <div class="flex space-x-2">
-                <button onclick="closeAdminModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors">Batal</button>
-                <button onclick="verifyAdminPin()" class="w-1/2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">Verifikasi</button>
-            </div>
-        </div>
-    </div>
-
     <!-- MODAL: API CONFIG -->
     <div id="apiModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4">
@@ -458,6 +429,29 @@
         </div>
     </div>
 
+    <!-- MODAL: PIN AUTH FOR BROADCAST -->
+    <div id="authModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h4 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-lock text-indigo-600"></i>
+                    <span>Otorisasi Panitia</span>
+                </h4>
+                <button onclick="closeAuthModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">Masukkan PIN Keamanan untuk mengakses portal pengiriman siaran WhatsApp.</p>
+            <div>
+                <input type="password" id="pinInput" placeholder="Masukkan PIN..." class="w-full px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div class="flex justify-end space-x-2 pt-2">
+                <button onclick="closeAuthModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors">Batal</button>
+                <button onclick="checkAdminPin()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">Verifikasi</button>
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST NOTIFICATION -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
         <div id="toastContent" class="px-4 py-3 rounded-xl shadow-xl text-xs font-medium text-white flex items-center space-x-2.5 bg-slate-900">
@@ -467,9 +461,8 @@
     </div>
 
     <script>
-        // HARDCODED WEB APP URL & PIN ADMIN
+        // HARDCODED WEB APP URL
         const DEFAULT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxV-l9zTUKI6A2OdEHWfMrLkC7nBgw91ZIIYQ_5iDyw8HQBNOrIXfAtftIw6Q3uo8r54Q/exec";
-        const ADMIN_PIN = "bimtek26";
         
         let pesertaData = [];
 
@@ -665,30 +658,6 @@
             showToast('File CSV berhasil diunduh!', 'success');
         }
 
-        // Admin PIN Verification Logic
-        function requestAdminAuth() {
-            document.getElementById('adminPinInput').value = '';
-            document.getElementById('adminPinModal').classList.remove('hidden');
-            document.getElementById('adminPinInput').focus();
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminPinModal').classList.add('hidden');
-        }
-
-        function verifyAdminPin() {
-            const pinVal = document.getElementById('adminPinInput').value.trim();
-            if (pinVal === ADMIN_PIN) {
-                closeAdminModal();
-                showToast('Akses Admin Diterima! Mengalihkan ke Portal Siaran...', 'success');
-                setTimeout(() => {
-                    window.open('https://dinasdikbudcilacap.github.io/pesan-massal/', '_blank');
-                }, 800);
-            } else {
-                showToast('PIN Admin salah!', 'error');
-            }
-        }
-
         // API Modal Settings
         function openApiModal() {
             document.getElementById('apiModal').classList.remove('hidden');
@@ -696,6 +665,27 @@
 
         function closeApiModal() {
             document.getElementById('apiModal').classList.add('hidden');
+        }
+
+        // Auth Modal for Broadcast Portal
+        function openAuthModal() {
+            document.getElementById('authModal').classList.remove('hidden');
+            document.getElementById('pinInput').value = '';
+            document.getElementById('pinInput').focus();
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        function checkAdminPin() {
+            const pin = document.getElementById('pinInput').value;
+            if (pin === 'bimtek26') {
+                closeAuthModal();
+                window.open('https://dinasdikbudcilacap.github.io/pesan-massal/', '_blank');
+            } else {
+                showToast('PIN keamanan tidak valid!', 'error');
+            }
         }
 
         function saveApiUrl() {
