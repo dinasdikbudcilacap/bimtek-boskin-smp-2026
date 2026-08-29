@@ -1160,6 +1160,22 @@
         /* Google Apps Script Web App URL */
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwffUjO_GvGelWiHI3DIyUKiN5y8i4h7kwM4tHU5i6GanvnnKO_qyHyohQIC3qKM1WU/exec";
 
+        // Kirim ke server tanpa membuat pengguna menunggu terlalu lama.
+        function syncToServer(payload) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+            return fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload),
+                signal: controller.signal
+            }).catch(err => {
+                console.warn("Sinkronisasi Google Sheets gagal atau timeout:", err);
+            }).finally(() => clearTimeout(timeoutId));
+        }
+
         /* Local Storage Keys */
         const LOCAL_STORAGE_KEY_SMP = "pesertaBimtekBoskin2026_SMP";
         const LOCAL_STORAGE_KEY_SD = "pesertaBimtekBoskin2026_SD";
@@ -1362,13 +1378,11 @@
             list.unshift(payload);
             saveLocalPesertaTk(list);
             renderPesertaTableTk();
-            try {
-                await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
-            } catch (err) { console.warn("Background API Sync note:", err); }
+            syncToServer(payload);
             document.getElementById('pendataanFormTk').reset();
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnHtml;
-            showCustomAlert("Pendaftaran Berhasil", "Data peserta TK/PAUD/PKBM berhasil disimpan ke server Google Sheets dan peramban lokal!");
+            showCustomAlert("Pendaftaran Berhasil", "Data peserta TK/PAUD/PKBM disimpan di peramban lokal dan sedang dikirim ke Google Sheets.");
         }
 
         function exportToCSVTk() {
@@ -1471,22 +1485,13 @@
             saveLocalPesertaSd(list);
             renderPesertaTableSd();
 
-            try {
-                await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(payload)
-                });
-            } catch (err) {
-                console.warn("Background API Sync note:", err);
-            }
+            syncToServer(payload);
 
             document.getElementById('pendataanFormSd').reset();
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnHtml;
 
-            showCustomAlert("Pendaftaran Berhasil", "Data peserta SD berhasil disimpan ke server Google Sheets dan peramban lokal!");
+            showCustomAlert("Pendaftaran Berhasil", "Data peserta SD disimpan di peramban lokal dan sedang dikirim ke Google Sheets.");
         }
 
         function exportToCSVSd() {
@@ -1604,22 +1609,13 @@
             saveLocalPeserta(list);
             renderPesertaTable();
 
-            try {
-                await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(payload)
-                });
-            } catch (err) {
-                console.warn("Background API Sync note:", err);
-            }
+            syncToServer(payload);
 
             document.getElementById('pendataanForm').reset();
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnHtml;
 
-            showCustomAlert("Pendaftaran Berhasil", "Data peserta SMP berhasil disimpan ke server Google Sheets dan peramban lokal!");
+            showCustomAlert("Pendaftaran Berhasil", "Data peserta SMP disimpan di peramban lokal dan sedang dikirim ke Google Sheets.");
         }
 
         function exportToCSV() {
@@ -1738,22 +1734,13 @@
             saveLocalPesertaFasda(list);
             renderPesertaTableFasda();
 
-            try {
-                await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(payload)
-                });
-            } catch (err) {
-                console.warn("Background API Sync note:", err);
-            }
+            syncToServer(payload);
 
             document.getElementById('pendataanFormFasda').reset();
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnHtml;
 
-            showCustomAlert("Pendaftaran Berhasil", "Data Fasda berhasil disimpan ke sheet FASDA dan peramban lokal!");
+            showCustomAlert("Pendaftaran Berhasil", "Data Fasda disimpan di peramban lokal dan sedang dikirim ke Google Sheets.");
         }
 
         function exportToCSVFasda() {
