@@ -1142,12 +1142,13 @@
                     <i class="fa-solid fa-user-shield"></i>
                 </div>
                 <h3 class="font-bold text-slate-900 text-base">Otorisasi Panitia</h3>
-                <p class="text-xs text-slate-500 mt-1">Masukkan PIN keamanan untuk membuka Broadcast</p>
+                <p class="text-xs text-slate-500 mt-1">Masukkan password untuk membuka Broadcast WhatsApp.</p>
             </div>
 
             <form onsubmit="verifyAdminPin(event)" class="space-y-4">
                 <div>
-                    <input type="password" id="adminPinInput" required placeholder="Masukkan PIN Admin" class="w-full text-center text-sm bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-mono tracking-widest focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <input type="password" id="adminPinInput" required placeholder="Masukkan password WhatsApp" class="w-full text-center text-sm bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-mono tracking-widest focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <p id="adminPinError" class="hidden text-xs text-rose-600 text-center mt-2">Password salah. Silakan coba lagi.</p>
                 </div>
                 <div class="flex gap-2">
                     <button type="button" onclick="closeAdminModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-all">
@@ -1173,7 +1174,10 @@
             </div>
 
             <form onsubmit="verifyMicrositePassword(event)" class="space-y-4">
-                <input type="password" id="micrositePassword" required autocomplete="off" placeholder="Masukkan password" class="w-full text-center text-sm bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-mono tracking-widest focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                <div>
+                    <input type="password" id="micrositePassword" required autocomplete="off" placeholder="Masukkan password" class="w-full text-center text-sm bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-mono tracking-widest focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <p id="micrositePasswordError" class="hidden text-xs text-rose-600 text-center mt-2">Password salah. Silakan coba lagi.</p>
+                </div>
                 <div class="flex gap-2">
                     <button type="button" onclick="closeMicrositeAuth()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-all">Batal</button>
                     <button type="submit" class="w-1/2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs shadow-md transition-all">Buka</button>
@@ -1803,6 +1807,7 @@
         function openAdminModal() {
             document.getElementById('adminModal').classList.remove('hidden');
             document.getElementById('adminPinInput').value = '';
+            document.getElementById('adminPinError').classList.add('hidden');
             document.getElementById('adminPinInput').focus();
         }
 
@@ -1815,6 +1820,7 @@
             const passwordInput = document.getElementById('micrositePassword');
             modal.classList.remove('hidden');
             passwordInput.value = '';
+            document.getElementById('micrositePasswordError').classList.add('hidden');
             passwordInput.focus();
         }
 
@@ -1829,18 +1835,20 @@
                 closeMicrositeAuth();
                 window.open("https://dinasdikbudcilacap.github.io/microsite-versi-apps-script/", "_blank", "noopener,noreferrer");
             } else {
-                showCustomAlert("Akses Ditolak", "Password yang Anda masukkan salah.", false);
+                document.getElementById('micrositePasswordError').classList.remove('hidden');
+                document.getElementById('micrositePassword').select();
             }
         }
 
         function verifyAdminPin(event) {
             event.preventDefault();
             const pin = document.getElementById('adminPinInput').value;
-            if (pin === "bimtek26") {
+            if (pin === "fasdaclp") {
                 closeAdminModal();
                 window.open("https://dinasdikbudcilacap.github.io/pesan-massal/", "_blank");
             } else {
-                showCustomAlert("Akses Ditolak", "PIN Keamanan yang Anda masukkan salah. Silakan hubungi panitia pelaksana.", false);
+                document.getElementById('adminPinError').classList.remove('hidden');
+                document.getElementById('adminPinInput').select();
             }
         }
 
