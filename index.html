@@ -102,6 +102,10 @@
                         <i class="fa-solid fa-award text-[11px] text-amber-400 w-4 text-center"></i>
                         <span class="flex-1 text-left">Materi Takola/SPMI</span>
                     </button>
+                    <button onclick="switchTab('litnum-tk')" id="nav-litnum-tk" class="nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all">
+                        <i class="fa-solid fa-book-open text-[11px] text-cyan-400 w-4 text-center"></i>
+                        <span class="flex-1 text-left">Litnum TK/PAUD</span>
+                    </button>
                     <button onclick="switchTab('litnum')" id="nav-litnum" class="nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all">
                         <i class="fa-solid fa-book-bookmark text-[11px] text-purple-400 w-4 text-center"></i>
                         <span class="flex-1 text-left">Materi Litnum</span>
@@ -350,6 +354,27 @@
                 </div>
                 <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[500px]">
                     <iframe src="https://awan.bbpmpjateng.id/s/wzZ3yykXgSQfT2j" class="w-full h-full border-0" title="Takola/SPMI Cloud"></iframe>
+                </div>
+            </section>
+
+            <!-- Tab: Materi Litnum TK/PAUD -->
+            <section id="tab-litnum-tk" class="tab-content hidden h-full flex flex-col animate-fade-in space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900">Litnum TK/PAUD</h3>
+                            <p class="text-xs text-slate-500">Materi Literasi dan Numerasi untuk TK/PAUD</p>
+                        </div>
+                    </div>
+                    <a href="https://awan.bbpmpjateng.id/s/2ir3tc4YdmScfJo" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
+                        Buka Tab Baru <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[500px]">
+                    <iframe src="https://awan.bbpmpjateng.id/s/2ir3tc4YdmScfJo" class="w-full h-full border-0" title="Litnum TK/PAUD Cloud"></iframe>
                 </div>
             </section>
 
@@ -1000,15 +1025,15 @@
                                     <option value="Hana Gayuh Utami, S.Pd.SD">Hana Gayuh Utami, S.Pd.SD</option>
                                     <option value="Indra Iskandar, S.Pd.">Indra Iskandar, S.Pd.</option>
                                     <option value="Isma Nuryani, S.Pd.">Isma Nuryani, S.Pd.</option>
-                                    <option value="Istikomah">Istikomah, S.Pd., M.Pd.</option>
+                                    <option value="Istikomah">Istikomah</option>
                                     <option value="Iwan Rijal Winata, S.Pd.SD., M.Pd.">Iwan Rijal Winata, S.Pd.SD., M.Pd.</option>
                                     <option value="Kartika Wahyuningsih, M.Pd.">Kartika Wahyuningsih, M.Pd.</option>
-                                    <option value="Kasmiyana Sulistiowati">Kasmiyana Sulistiowati, S.Pd.Mat, M.Pd.</option>
+                                    <option value="Kasmiyana Sulistiowati">Kasmiyana Sulistiowati</option>
                                     <option value="Krista Adayu, M.Pd.">Krista Adayu, M.Pd.</option>
                                     <option value="Mega Permatasari, M.Pd.">Mega Permatasari, M.Pd.</option>
                                     <option value="Ratino, S.S., M.Pd.">Ratino, S.S., M.Pd.</option>
                                     <option value="Sarkim, S.Pd.SD., M.Pd.">Sarkim, S.Pd.SD., M.Pd.</option>
-                                    <option value="Siti Nurjanah">Siti Nurjanah, S.Si., S.Pd.Bio., M.Pd.</option>
+                                    <option value="Siti Nurjanah">Siti Nurjanah</option>
                                     <option value="Sri Hartati, S.Pd., M.Pd.">Sri Hartati, S.Pd., M.Pd.</option>
                                     <option value="Suratman, M.Pd.">Suratman, M.Pd.</option>
                                     <option value="Triyanto,S.Pd.">Triyanto,S.Pd.</option>
@@ -1218,6 +1243,7 @@
             'aktivasi-akun': { title: 'Panduan Aktivasi Akun', sub: 'Petunjuk Teknis dan Prosedur Aktivasi Akun BOS Kinerja' },
             'jadwal': { title: 'Jadwal Pelaksanaan Bimtek', sub: 'Agenda Kegiatan Bimbingan Teknis BOS Kinerja Tahun 2026' },
             'spmi': { title: 'Materi Takola/SPMI', sub: 'Materi Takola/SPMI BBPMP Jawa Tengah' },
+            'litnum-tk': { title: 'Litnum TK/PAUD', sub: 'Materi Literasi dan Numerasi untuk TK/PAUD' },
             'litnum': { title: 'Materi Litnum', sub: 'Pusat Materi Literasi dan Numerasi BBPMP Jawa Tengah' },
             'digitalisasi': { title: 'Materi Digitalisasi', sub: 'Pusat Materi Digitalisasi Sekolah BBPMP Jawa Tengah' },
             'orbit': { title: 'ORBIT BBPMP Jawa Tengah', sub: 'Tautan untuk mengakses pretes, postes dan unggah tugas di BBPMP' },
@@ -1292,7 +1318,7 @@
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
 
             document.querySelectorAll('.nav-item').forEach(btn => {
-                if (btn.id === 'nav-spmi' || btn.id === 'nav-litnum' || btn.id === 'nav-digitalisasi' || btn.id === 'nav-aktivasi-akun' || btn.id === 'nav-jadwal' || btn.id === 'nav-pendataan-tk' || btn.id === 'nav-pendataan-sd' || btn.id === 'nav-pendataan' || btn.id === 'nav-pendataan-fasda') {
+                if (btn.id === 'nav-spmi' || btn.id === 'nav-litnum-tk' || btn.id === 'nav-litnum' || btn.id === 'nav-digitalisasi' || btn.id === 'nav-aktivasi-akun' || btn.id === 'nav-jadwal' || btn.id === 'nav-pendataan-tk' || btn.id === 'nav-pendataan-sd' || btn.id === 'nav-pendataan' || btn.id === 'nav-pendataan-fasda') {
                     btn.className = "nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800/80 hover:text-slate-200 transition-all";
                 } else {
                     btn.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white";
@@ -1316,7 +1342,7 @@
                     activeNav.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30";
                 } else if (tabId === 'pendataan-fasda') {
                     activeNav.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all bg-orange-600 text-white shadow-lg shadow-orange-600/30";
-                } else if (tabId === 'spmi' || tabId === 'litnum' || tabId === 'digitalisasi') {
+                } else if (tabId === 'spmi' || tabId === 'litnum-tk' || tabId === 'litnum' || tabId === 'digitalisasi') {
                     activeNav.className = "nav-item w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-amber-500/20 text-amber-300 border border-amber-500/30";
                     const dm = document.getElementById('dropdown-materi');
                     if (dm && dm.classList.contains('hidden')) toggleDropdown('dropdown-materi');
