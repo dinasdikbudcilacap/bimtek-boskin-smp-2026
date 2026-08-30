@@ -116,7 +116,7 @@
             <!-- 4. Orbit -->
             <button onclick="switchTab('orbit')" id="nav-orbit" class="nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
                 <i class="fa-solid fa-globe w-5 text-center text-sky-400 text-sm"></i>
-                <span class="flex-1 text-left">Orbit BPPMP</span>
+                <span class="flex-1 text-left">Orbit BBPMP</span>
             </button>
 
             <!-- 5. Microsite -->
@@ -165,7 +165,12 @@
         </nav>
 
         <!-- Database Spreadsheet Direct Link -->
-        <div class="p-3 border-t border-slate-800 hidden md:block">
+        <div class="p-3 border-t border-slate-800">
+            <!-- Protected Microsite Shortcut -->
+            <button type="button" onclick="openMicrositeAuth()" aria-label="Buka Microsite Apps Script" title="Microsite Apps Script" class="w-full mb-2 flex items-center justify-center p-2 rounded-xl bg-slate-800/70 hover:bg-slate-700 border border-slate-700 transition-all">
+                <img src="https://drive.google.com/thumbnail?id=1kKAD6sl_g_0Hfl3krooRHJBDO30rziSU&amp;sz=w120-h120" alt="" class="w-10 h-10 object-contain rounded-lg" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                <i class="fa-solid fa-image text-slate-400 text-xl hidden" aria-hidden="true"></i>
+            </button>
             <a href="https://docs.google.com/spreadsheets/d/1K76yoNRa8N8PU3z_P6HRRCwgiGGR_JLXneY3ZcGEtOE/edit" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl text-xs font-medium text-emerald-400 bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-800/50 transition-all">
                 <div class="flex items-center gap-2.5">
                     <i class="fa-solid fa-table-cells text-emerald-400"></i>
@@ -336,7 +341,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-sm text-slate-900">Materi Takola/SPMI</h3>
-                            <p class="text-xs text-slate-500">Materi Takola/SPMI BPPMP Jawa Tengah</p>
+                            <p class="text-xs text-slate-500">Materi Takola/SPMI BBPMP Jawa Tengah</p>
                         </div>
                     </div>
                     <a href="https://awan.bbpmpjateng.id/s/wzZ3yykXgSQfT2j" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
@@ -357,7 +362,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-sm text-slate-900">Materi Litnum</h3>
-                            <p class="text-xs text-slate-500">Materi Literasi dan Numerasi BPPMP Jawa Tengah</p>
+                            <p class="text-xs text-slate-500">Materi Literasi dan Numerasi BBPMP Jawa Tengah</p>
                         </div>
                     </div>
                     <a href="https://awan.bbpmpjateng.id/s/2oHAf7aQNCoKjo2" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
@@ -378,7 +383,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-sm text-slate-900">Materi Digitalisasi</h3>
-                            <p class="text-xs text-slate-500">Materi Digitalisasi Pembelajaran BPPMP Jawa Tengah</p>
+                            <p class="text-xs text-slate-500">Materi Digitalisasi Pembelajaran BBPMP Jawa Tengah</p>
                         </div>
                     </div>
                     <a href="https://awan.bbpmpjateng.id/s/5CnzxXA7eETcMNi" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
@@ -398,8 +403,8 @@
                             <i class="fa-solid fa-globe"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold text-sm text-slate-900">ORBIT BPPMP Jawa Tengah</h3>
-                            <p class="text-xs text-slate-500">Tautan untuk mengakses pretes, postes dan unggah tugas di BPPMP</p>
+                            <h3 class="font-bold text-sm text-slate-900">ORBIT BBPMP Jawa Tengah</h3>
+                            <p class="text-xs text-slate-500">Tautan untuk mengakses pretes, postes dan unggah tugas di BBPMP</p>
                         </div>
                     </div>
                     <a href="https://pmp.bbpmpjateng.id/login" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center justify-center gap-2 shadow-sm">
@@ -407,7 +412,7 @@
                     </a>
                 </div>
                 <div class="flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden min-h-[500px]">
-                    <iframe src="https://pmp.bbpmpjateng.id/login" class="w-full h-full border-0" title="ORBIT BPPMP"></iframe>
+                    <iframe src="https://pmp.bbpmpjateng.id/login" class="w-full h-full border-0" title="ORBIT BBPMP"></iframe>
                 </div>
             </section>
 
@@ -1156,6 +1161,27 @@
         </div>
     </div>
 
+    <!-- Microsite Authentication Modal -->
+    <div id="micrositeModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 animate-fade-in">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 transform transition-all">
+            <div class="text-center mb-5">
+                <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">Akses Microsite</h3>
+                <p class="text-xs text-slate-500 mt-1">Masukkan password untuk membuka microsite.</p>
+            </div>
+
+            <form onsubmit="verifyMicrositePassword(event)" class="space-y-4">
+                <input type="password" id="micrositePassword" required autocomplete="off" placeholder="Masukkan password" class="w-full text-center text-sm bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-mono tracking-widest focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                <div class="flex gap-2">
+                    <button type="button" onclick="closeMicrositeAuth()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-all">Batal</button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs shadow-md transition-all">Buka</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         /* Google Apps Script Web App URL */
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwffUjO_GvGelWiHI3DIyUKiN5y8i4h7kwM4tHU5i6GanvnnKO_qyHyohQIC3qKM1WU/exec";
@@ -1187,10 +1213,10 @@
             'beranda': { title: 'Beranda Utama', sub: 'Portal Resmi Bimbingan Teknis BOS Kinerja 2026 Kabupaten Cilacap' },
             'aktivasi-akun': { title: 'Panduan Aktivasi Akun', sub: 'Petunjuk Teknis dan Prosedur Aktivasi Akun BOS Kinerja' },
             'jadwal': { title: 'Jadwal Pelaksanaan Bimtek', sub: 'Agenda Kegiatan Bimbingan Teknis BOS Kinerja Tahun 2026' },
-            'spmi': { title: 'Materi Takola/SPMI', sub: 'Materi Takola/SPMI BPPMP Jawa Tengah' },
-            'litnum': { title: 'Materi Litnum', sub: 'Pusat Materi Literasi dan Numerasi BPPMP Jawa Tengah' },
-            'digitalisasi': { title: 'Materi Digitalisasi', sub: 'Pusat Materi Digitalisasi Sekolah BPPMP Jawa Tengah' },
-            'orbit': { title: 'ORBIT BPPMP Jawa Tengah', sub: 'Tautan untuk mengakses pretes, postes dan unggah tugas di BPPMP' },
+            'spmi': { title: 'Materi Takola/SPMI', sub: 'Materi Takola/SPMI BBPMP Jawa Tengah' },
+            'litnum': { title: 'Materi Litnum', sub: 'Pusat Materi Literasi dan Numerasi BBPMP Jawa Tengah' },
+            'digitalisasi': { title: 'Materi Digitalisasi', sub: 'Pusat Materi Digitalisasi Sekolah BBPMP Jawa Tengah' },
+            'orbit': { title: 'ORBIT BBPMP Jawa Tengah', sub: 'Tautan untuk mengakses pretes, postes dan unggah tugas di BBPMP' },
             'microsite': { title: 'Microsite', sub: 'Tautan untuk unggah berkas tugas dan dokumentasi bimtek BOS Kinerja 2026 di Google Drive' },
             'whatsapp': { title: 'Portal Informasi WhatsApp', sub: 'Grup Peserta Bimtek dan Broadcast' },
             'pendataan-tk': { title: 'Form Pendataan Peserta TK/PAUD/PKBM', sub: 'Pendataan Resmi Peserta Bimtek BOS Kinerja TK/PAUD/PKBM' },
@@ -1782,6 +1808,29 @@
 
         function closeAdminModal() {
             document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function openMicrositeAuth() {
+            const modal = document.getElementById('micrositeModal');
+            const passwordInput = document.getElementById('micrositePassword');
+            modal.classList.remove('hidden');
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+
+        function closeMicrositeAuth() {
+            document.getElementById('micrositeModal').classList.add('hidden');
+        }
+
+        function verifyMicrositePassword(event) {
+            event.preventDefault();
+            const password = document.getElementById('micrositePassword').value;
+            if (password === "bimtek26") {
+                closeMicrositeAuth();
+                window.open("https://dinasdikbudcilacap.github.io/microsite-versi-apps-script/", "_blank", "noopener,noreferrer");
+            } else {
+                showCustomAlert("Akses Ditolak", "Password yang Anda masukkan salah.", false);
+            }
         }
 
         function verifyAdminPin(event) {
